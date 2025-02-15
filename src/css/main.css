@@ -13,9 +13,19 @@
 	width: min(777px, 100%);
 	min-height: 100%;
 
-	border-right: 1px solid #ffffff;
-	border-left: 1px solid #ffffff;
+	box-sizing: border-box;
+	padding: 0 3rem;
+}
 
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-	color: #ffffff;
+@media (min-width: 1050px) {
+	.main {
+		border-right: 1px solid #ffffff;
+		border-left: 1px solid #ffffff;
+	}
+}
+
+.menu {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
 }

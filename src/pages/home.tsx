@@ -3,7 +3,10 @@ import React from 'react';
 function Home() {
 	return (
 		<div>
-			<p>Vladimir Kiril Bickov</p>
+			<p>
+				My name is Vladimir, and I am doing coding and some other stuff.
+				Check other pages for more information. :)
+			</p>
 		</div>
 	);
 }
