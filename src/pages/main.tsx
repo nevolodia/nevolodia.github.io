@@ -7,22 +7,44 @@ import Education from "./education";
 import '../css/main.css';
 
 function Main() {
-	let activePage;
-	const urlParams = new URLSearchParams(window.location.search);
-	const page = urlParams.get('p');
+	// eslint-disable-next-line no-restricted-globals
+	const originalPushState = history.pushState;
+	// eslint-disable-next-line no-restricted-globals
+	const originalReplaceState = history.replaceState;
 
-	switch (page) {
-		case "education":
-			activePage = "education";
-			break;
-		case "research":
-			activePage = "research";
-			break;
-		case "gallery":
-			activePage = "gallery";
-			break;
-		default:
-			activePage = "home";
+	// eslint-disable-next-line no-restricted-globals
+	history.pushState = function (state: any, title: string, url?: string | URL | null) {
+		// eslint-disable-next-line no-restricted-globals
+		originalPushState.call(history, state, title, url);
+		updatePageSelection();
+	};
+
+	// eslint-disable-next-line no-restricted-globals
+	history.replaceState = function (state: any, title: string, url?: string | URL | null) {
+		// eslint-disable-next-line no-restricted-globals
+		originalReplaceState.call(history, state, title, url);
+		updatePageSelection();
+	};
+
+
+	const [activePage, setActivePage] = React.useState("home");
+	function updatePageSelection() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const page = urlParams.get('p');
+
+		switch (page) {
+			case "education":
+				setActivePage("education");
+				break;
+			case "research":
+				setActivePage("research");
+				break;
+			case "gallery":
+				setActivePage("gallery");
+				break;
+			default:
+				setActivePage("home");
+		}
 	}
 
 	return (
