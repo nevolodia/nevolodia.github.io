@@ -1,3 +1,7 @@
 [data-rmiz-modal-overlay="visible"] {
 	background-color: rgb(0, 0, 0) !important;
 }
+
+[data-rmiz-btn-unzoom] {
+	display: none;
+}

@@ -9,6 +9,7 @@ function Image(props: { link: string, link_big?: string }) {
 			zoomImg={{
 				src: props.link_big ? props.link_big : props.link,
 			}}
+			IconUnzoom={() => null}
 		>
 			<img src={props.link} />
 		</Zoom>
