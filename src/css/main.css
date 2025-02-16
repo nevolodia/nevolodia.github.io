@@ -1,5 +1,5 @@
 .bg {
-	width: 100%;
+	width: 100% !important;
 	min-height: 100vh;
 	background-color: #000000;
 
@@ -28,6 +28,7 @@
 .menu {
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 	gap: 1rem;
 }
 
