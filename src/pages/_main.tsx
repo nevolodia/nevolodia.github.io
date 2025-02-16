@@ -3,10 +3,33 @@ import Link from "../components/Link";
 
 import Home from "./home";
 import Education from "./education";
+import Projects from "./projects";
 
 import '../css/main.css';
+import Gallery from "./gallery";
 
-function Main() {
+function _main() {
+
+	const [activePage, setActivePage] = React.useState("home");
+	function updatePageSelection() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const page = urlParams.get('p');
+
+		switch (page) {
+			case "education":
+				setActivePage("education");
+				break;
+			case "projects":
+				setActivePage("projects");
+				break;
+			case "gallery":
+				setActivePage("gallery");
+				break;
+			default:
+				setActivePage("home");
+		}
+	}
+
 	// eslint-disable-next-line no-restricted-globals
 	const originalPushState = history.pushState;
 	// eslint-disable-next-line no-restricted-globals
@@ -26,36 +49,15 @@ function Main() {
 		updatePageSelection();
 	};
 
-
-	const [activePage, setActivePage] = React.useState("home");
-	function updatePageSelection() {
-		const urlParams = new URLSearchParams(window.location.search);
-		const page = urlParams.get('p');
-
-		switch (page) {
-			case "education":
-				setActivePage("education");
-				break;
-			case "research":
-				setActivePage("research");
-				break;
-			case "gallery":
-				setActivePage("gallery");
-				break;
-			default:
-				setActivePage("home");
-		}
-	}
-
 	return (
 		<div className="bg">
 			<div className="main">
-				<h2>Vladimir Kiril Bickov</h2>
+				<h2>Vladimir Kirill Bickov</h2>
 
 				<div className="menu">
 					<Link link="/">Home</Link>
 					<Link link="/?p=education">Education</Link>
-					<Link link="/?p=research">Research</Link>
+					<Link link="/?p=projects">Projects</Link>
 					<Link link="/?p=gallery">Gallery</Link>
 				</div>
 
@@ -67,16 +69,16 @@ function Main() {
 					<Education />
 				</div>
 
-				<div style={{ display: activePage === "research" ? "block" : "none" }}>
-					<Home />
+				<div style={{ display: activePage === "projects" ? "block" : "none" }}>
+					<Projects />
 				</div>
 
 				<div style={{ display: activePage === "gallery" ? "block" : "none" }}>
-					<Home />
+					<Gallery />
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default Main;
+export default _main;

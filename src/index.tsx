@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Main from './pages/main';
+import _main from './pages/_main';
 import './css/index.css';
 
 const root = ReactDOM.createRoot(
@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<Main />
+		<_main />
 	</React.StrictMode>
 );
