@@ -1,0 +1,14 @@
+.gallery-component {
+	column-count: 2;
+	gap: 1rem;
+
+	margin-top: 2rem;
+}
+
+.gallery-component img {
+	width: 100%;
+	display: block;
+	margin-bottom: 1rem;
+
+	break-inside: avoid;
+}
