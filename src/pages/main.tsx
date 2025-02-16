@@ -8,16 +8,17 @@ import '../css/main.css';
 
 function Main() {
 	let activePage;
-	const url = window.location.pathname;
+	const urlParams = new URLSearchParams(window.location.search);
+	const page = urlParams.get('p');
 
-	switch (url) {
-		case "/education":
+	switch (page) {
+		case "education":
 			activePage = "education";
 			break;
-		case "/research":
+		case "research":
 			activePage = "research";
 			break;
-		case "/gallery":
+		case "gallery":
 			activePage = "gallery";
 			break;
 		default:
@@ -31,9 +32,9 @@ function Main() {
 
 				<div className="menu">
 					<Link link="/">Home</Link>
-					<Link link="/education">Education</Link>
-					<Link link="/research">Research</Link>
-					<Link link="/gallery">Gallery</Link>
+					<Link link="/?p=education">Education</Link>
+					<Link link="/?p=research">Research</Link>
+					<Link link="/?p=gallery">Gallery</Link>
 				</div>
 
 				<div style={{ display: activePage === "home" ? "block" : "none" }}>
