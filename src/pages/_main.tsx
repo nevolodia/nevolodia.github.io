@@ -4,9 +4,9 @@ import Link from "../components/Link";
 import Home from "./home";
 import Education from "./education";
 import Projects from "./projects";
+import Gallery from "./gallery";
 
 import '../css/main.css';
-import Gallery from "./gallery";
 
 function _main() {
 
