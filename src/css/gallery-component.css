@@ -19,7 +19,7 @@
 	break-inside: avoid;
 }
 
-@media (min-width: var(--width-breakpoint)) {
+@media (min-width: 1050px) {
 	.gallery-component img {
 		margin-bottom: 1rem;
 	}
