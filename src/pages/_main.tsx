@@ -29,6 +29,7 @@ function _main() {
 				setActivePage("home");
 		}
 	}
+	updatePageSelection();
 
 	// eslint-disable-next-line no-restricted-globals
 	const originalPushState = history.pushState;
