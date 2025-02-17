@@ -1,3 +1,7 @@
+:root {
+	--width-breakpoint: 1050px;
+}
+
 .bg {
 	width: 100% !important;
 	min-height: 100vh;
@@ -14,13 +18,14 @@
 	width: min(777px, 100%);
 
 	box-sizing: border-box;
-	padding: 0 3rem 3rem;
+	padding: 0 1.125rem 2rem;
 }
 
-@media (min-width: 1050px) {
+@media (min-width: var(--width-breakpoint)) {
 	.main {
 		border-right: 1px solid #ffffff;
 		border-left: 1px solid #ffffff;
+		padding: 0 3rem 3rem;
 	}
 }
 

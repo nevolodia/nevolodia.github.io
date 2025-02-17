@@ -1,14 +1,26 @@
 .gallery-component {
 	column-count: 2;
-	gap: 1rem;
+	gap: .75rem;
 
 	margin-top: 2rem;
+}
+
+@media (min-width: var(--width-breakpoint)) {
+	.gallery-component {
+		gap: 1rem;
+	}
 }
 
 .gallery-component img {
 	width: 100%;
 	display: block;
-	margin-bottom: 1rem;
+	margin-bottom: .75rem;
 
 	break-inside: avoid;
+}
+
+@media (min-width: var(--width-breakpoint)) {
+	.gallery-component img {
+		margin-bottom: 1rem;
+	}
 }
