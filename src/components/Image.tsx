@@ -11,7 +11,7 @@ function Image(props: { link: string, link_big?: string, highFetchPriority?: boo
 			}}
 			IconUnzoom={() => null}
 		>
-			<img className={"image-component"} src={props.link} loading="lazy"
+			<img className={"image-component"} src={props.link}
 			     fetchPriority={props.highFetchPriority ? "high" : "low"} />
 		</Zoom>
 	);
