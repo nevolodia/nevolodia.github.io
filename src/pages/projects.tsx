@@ -6,14 +6,13 @@ function Projects() {
 			<p>
 				Here are some of my projects:
 
-				<ol>
-					<li>
-						An online shop <a href="https://binatec.eu/" target="_blank">
-							https://binatec.eu/
-						</a> for European household chemistry company.
-						Made with WordPress, WooCommerce, and a bit of love.
-					</li>
-				</ol>
+				<br />
+				<br />
+
+				1. An online shop <a href="https://binatec.eu/" target="_blank">
+					https://binatec.eu/
+				</a> for European household chemistry company.
+				Made with WordPress, WooCommerce, and a bit of love.
 			</p>
 		</div>
 	);
