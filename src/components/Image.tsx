@@ -3,7 +3,7 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css'
 import  '../css/image.css';
 
-function Image(props: { link: string, link_big?: string }) {
+function Image(props: { link: string, link_big?: string, highFetchPriority?: boolean }) {
 	return (
 		<Zoom
 			zoomImg={{
@@ -11,7 +11,8 @@ function Image(props: { link: string, link_big?: string }) {
 			}}
 			IconUnzoom={() => null}
 		>
-			<img className={"image-component"} src={props.link} loading="lazy" />
+			<img className={"image-component"} src={props.link} loading="lazy"
+			     fetchPriority={props.highFetchPriority ? "high" : "low"} />
 		</Zoom>
 	);
 }
