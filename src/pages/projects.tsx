@@ -13,6 +13,17 @@ function Projects() {
 					https://binatec.eu/
 				</a> for European household chemistry company.
 				Made with WordPress, WooCommerce, and a bit of love.
+
+				<br />
+				<br />
+
+				2. Currently working on ML image-2-image architecture study.
+				And doing a website for Latvian sport club.
+
+				<br />
+				<br />
+
+				More projects coming soon...
 			</p>
 		</div>
 	);
