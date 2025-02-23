@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Link from "../components/Link";
 
 import Home from "./home";
@@ -29,7 +29,10 @@ function _main() {
 				setActivePage("home");
 		}
 	}
-	updatePageSelection();
+
+	useEffect(() => {
+		updatePageSelection();
+	}, []);
 
 	// eslint-disable-next-line no-restricted-globals
 	const originalPushState = history.pushState;
