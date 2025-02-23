@@ -1,7 +1,6 @@
 ## todo
 
-1. Lazy load the images (in image component)
-2. Optimize site performance and compatibility
+1. Load images last (when everything else is loaded / document is rendered)
 
 ## super minor things
 
