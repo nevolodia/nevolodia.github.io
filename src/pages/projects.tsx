@@ -17,7 +17,7 @@ function Projects() {
 				<br />
 				<br />
 
-				2. Currently working on ML image-2-image architecture study.
+				2. Currently working on new ML image-2-image model.
 				And doing a website for Latvian sport club.
 
 				<br />
