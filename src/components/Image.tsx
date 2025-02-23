@@ -11,7 +11,7 @@ function Image(props: { link: string, link_big?: string }) {
 			}}
 			IconUnzoom={() => null}
 		>
-			<img src={props.link} loading="lazy" />
+			<img className={"image-component"} src={props.link} loading="lazy" />
 		</Zoom>
 	);
 }

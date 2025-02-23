@@ -5,3 +5,8 @@
 [data-rmiz-btn-unzoom] {
 	display: none;
 }
+
+.image-component {
+	width: 100%;
+	height: 100%;
+}
