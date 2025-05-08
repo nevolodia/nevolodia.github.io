@@ -28,38 +28,32 @@ function Home() {
 				<br/>
 				<br/>
 
-				2. Won 4th place in the algo agent tower defense competition Terminal,
-				organized by Citadel Securities trading company, competing against
-				teams from top European universities.
+				2. 4th place in the algorithmic agent tower defense competition
+				organized by Citadel Securities.
 
 				<br/>
 				<br/>
 
-				3. Won 2nd place in hackathon by bunq bank. Developed saluting for importing
-				or defining in UI financial operation and then analyzing and running them.
+				3. 2nd place in hackathon by bunq bank. Developed solution for importing or
+				defining graph of financial operations and then analyzing or executing them.
 
 				<br/>
 				<br/>
 
-				4. Won 1st place in the Port Transition challenge by the Port of Rotterdam.
+				4. 1st place in Port Transition challenge by the Port of Rotterdam.
 				Developed an ML solution to predict distributions in the port.
 
 				<br/>
 				<br/>
 
-				5. Got 1st place in the Latvian Open Olympiad in Economics 2024, 2nd place
-				in the National Olympiad in Economics 2023, and 3rd place in the Latvian Linguistics
-				Olympiad 2024.
+				5. 1st place in the Latvian Open Olympiad in Economics 2024,
+				2nd place in the National Olympiad in Economics 2023,
+				and 3rd place in the Latvian Linguistics Olympiad 2024.
 
 				<br/>
 				<br/>
 
-				Check other pages for more information. :)
-
-				<br/>
-				<br/>
-
-				Anc check out the gallery of previously described achievements:
+				Check out the gallery of previously described achievements:
 
 				<br/>
 				<br/>
