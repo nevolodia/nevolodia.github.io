@@ -5,6 +5,7 @@ import Home from "./home";
 import Education from "./education";
 import Projects from "./projects";
 import Gallery from "./gallery";
+import UnlistedBrainfuck from "./unlisted_brainfuck";
 
 import '../css/main.css';
 
@@ -24,6 +25,9 @@ function _main() {
 				break;
 			case "gallery":
 				setActivePage("gallery");
+				break;
+			case "unlisted_brainfuck":
+				setActivePage("unlisted_brainfuck");
 				break;
 			default:
 				setActivePage("home");
@@ -65,21 +69,27 @@ function _main() {
 					<Link link="/?p=gallery">Gallery</Link>
 				</div>
 
-				<div style={{ display: activePage === "home" ? "block" : "none" }}>
-					<Home />
+				<div style={{display: activePage === "home" ? "block" : "none"}}>
+					<Home/>
 				</div>
 
-				<div style={{ display: activePage === "education" ? "block" : "none" }}>
-					<Education />
+				<div style={{display: activePage === "education" ? "block" : "none"}}>
+					<Education/>
 				</div>
 
-				<div style={{ display: activePage === "projects" ? "block" : "none" }}>
-					<Projects />
+				<div style={{display: activePage === "projects" ? "block" : "none"}}>
+					<Projects/>
 				</div>
 
-				<div style={{ display: activePage === "gallery" ? "block" : "none" }}>
-					<Gallery />
+				<div style={{display: activePage === "gallery" ? "block" : "none"}}>
+					<Gallery/>
 				</div>
+
+				{
+					activePage === "unlisted_brainfuck"
+					? <UnlistedBrainfuck/>
+					: null
+				}
 			</div>
 		</div>
 	);
