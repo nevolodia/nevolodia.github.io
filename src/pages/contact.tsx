@@ -15,6 +15,11 @@ function Contact() {
 					https://github.com/nevolodia
 				</a>
 
+				Linkedin: <br />
+				<a href={"https://www.linkedin.com/in/nevolodia/"}>
+					https://www.linkedin.com/in/nevolodia/
+				</a>
+
 				<br />
 				<br />
 
