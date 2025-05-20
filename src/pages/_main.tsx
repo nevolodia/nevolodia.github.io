@@ -88,6 +88,7 @@ function _main() {
 					<Link link="/?p=education">Education</Link>
 					<Link link="/?p=projects">Projects</Link>
 					<Link link="/?p=gallery">Gallery</Link>
+					<Link link="/?p=contact">Contact</Link>
 				</div>
 
 				<div style={{display: activePage === "home" ? "block" : "none"}}>
@@ -104,6 +105,10 @@ function _main() {
 
 				<div style={{display: activePage === "gallery" ? "block" : "none"}}>
 					<Gallery/>
+				</div>
+
+				<div style={{display: activePage === "contact" ? "block" : "none"}}>
+					<Contact/>
 				</div>
 
 				{
