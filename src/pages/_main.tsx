@@ -8,6 +8,7 @@ import Gallery from "./gallery";
 import UnlistedBrainfuck from "./unlisted_brainfuck";
 
 import '../css/main.css';
+import Contact from "./contact";
 
 function _main() {
 
@@ -26,6 +27,9 @@ function _main() {
 			case "gallery":
 				setActivePage("gallery");
 				break;
+			case "contact":
+				setActivePage("contact");
+				break;
 			case "unlisted_brainfuck":
 				setActivePage("unlisted_brainfuck");
 				break;
@@ -34,8 +38,25 @@ function _main() {
 		}
 	}
 
+	// Update the page selection when the component mounts
 	useEffect(() => {
 		updatePageSelection();
+	}, []);
+
+
+	// Update the page selection when the URL changes
+	useEffect(() => {
+		updatePageSelection();
+
+		const handlePopState = () => {
+			updatePageSelection();
+		};
+
+		window.addEventListener('popstate', handlePopState);
+
+		return () => {
+			window.removeEventListener('popstate', handlePopState);
+		};
 	}, []);
 
 	// eslint-disable-next-line no-restricted-globals
