@@ -5,6 +5,7 @@ import Home from "./home";
 import Education from "./education";
 import Projects from "./projects";
 import Gallery from "./gallery";
+import Thoughts from "./thoughts";
 import UnlistedBrainfuck from "./unlisted_brainfuck";
 
 import '../css/main.css';
@@ -29,6 +30,9 @@ function _main() {
 				break;
 			case "contact":
 				setActivePage("contact");
+				break;
+			case "thoughts":
+				setActivePage("thoughts");
 				break;
 			case "unlisted_brainfuck":
 				setActivePage("unlisted_brainfuck");
@@ -89,6 +93,7 @@ function _main() {
 					<Link link="/?p=projects">Projects</Link>
 					<Link link="/?p=gallery">Gallery</Link>
 					<Link link="/?p=contact">Contact</Link>
+					<Link link="/?p=thoughts">Thoughts</Link>
 				</div>
 
 				<div style={{display: activePage === "home" ? "block" : "none"}}>
@@ -109,6 +114,10 @@ function _main() {
 
 				<div style={{display: activePage === "contact" ? "block" : "none"}}>
 					<Contact/>
+				</div>
+
+				<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
+					<Thoughts/>
 				</div>
 
 				{
