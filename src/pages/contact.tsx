@@ -39,7 +39,7 @@ function Contact() {
 				<br />
 
 				My personal email: <br />
-				me [at] nevolodia [dot] com
+				hi [at] nevolodia [dot] com
 			</p>
 		</div>
 	);
