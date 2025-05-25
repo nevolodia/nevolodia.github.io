@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from "../components/Image";
 
 function Contact() {
 	return (
@@ -26,6 +25,12 @@ function Contact() {
 				<br />
 				<br />
 
+				My personal email: <br />
+				hi [at] nevolodia [dot] com
+
+				<br />
+				<br />
+
 				My official email: <br />
 				work [at] nevolodia [dot] com
 
@@ -34,12 +39,6 @@ function Contact() {
 
 				My study email: <br />
 				v.k.bickovs [at] student [dot] tudelft [dot] nl
-
-				<br />
-				<br />
-
-				My personal email: <br />
-				hi [at] nevolodia [dot] com
 			</p>
 		</div>
 	);
