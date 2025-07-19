@@ -3,7 +3,7 @@ import Link from "../components/Link";
 
 import Home from "./home";
 import Education from "./education";
-import Projects from "./projects";
+import Experience from "./experience";
 import Gallery from "./gallery";
 import Thoughts from "./thoughts";
 import UnlistedBrainfuck from "./unlisted_brainfuck";
@@ -22,8 +22,8 @@ function _main() {
 			case "education":
 				setActivePage("education");
 				break;
-			case "projects":
-				setActivePage("projects");
+			case "experience":
+				setActivePage("experience");
 				break;
 			case "gallery":
 				setActivePage("gallery");
@@ -90,10 +90,10 @@ function _main() {
 				<div className="menu">
 					<Link link="/">Home</Link>
 					<Link link="/?p=education">Education</Link>
-					<Link link="/?p=projects">Projects</Link>
+					<Link link="/?p=experience">Experience</Link>
 					<Link link="/?p=gallery">Gallery</Link>
 					<Link link="/?p=contact">Contact</Link>
-					<Link link="/?p=thoughts">Thoughts</Link>
+					{/*<Link link="/?p=thoughts">Thoughts</Link>*/}
 				</div>
 
 				<div style={{display: activePage === "home" ? "block" : "none"}}>
@@ -104,8 +104,8 @@ function _main() {
 					<Education/>
 				</div>
 
-				<div style={{display: activePage === "projects" ? "block" : "none"}}>
-					<Projects/>
+				<div style={{display: activePage === "experience" ? "block" : "none"}}>
+					<Experience/>
 				</div>
 
 				<div style={{display: activePage === "gallery" ? "block" : "none"}}>
@@ -116,9 +116,11 @@ function _main() {
 					<Contact/>
 				</div>
 
+				{/*}
 				<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
 					<Thoughts/>
 				</div>
+				*/}
 
 				{
 					activePage === "unlisted_brainfuck"

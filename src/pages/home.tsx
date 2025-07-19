@@ -21,32 +21,47 @@ function Home() {
 				<br/>
 				<br/>
 
-				1. Wrote JIT compiler for Brainfuck in x86 Assembly,
-				a jq implementation in Haskell,
+				1. Wrote a jq implementation in Haskell,
+				JIT compiler for Brainfuck in x86 Assembly,
 				and other cool stuff.
 
 				<br/>
 				<br/>
 
-				2. 4th place in the algorithmic agent tower defense competition
-				organized by Citadel Securities.
+				2. 2nd place in hackathon by <a href="https://www.bunq.com/" target="_blank">
+					bunq bank
+				</a>, Europe's second largest fintech bank.
+				Developed for executing graph of financial operations, integrated ML tools.
 
 				<br/>
 				<br/>
 
-				3. 2nd place in hackathon by bunq bank. Developed solution for importing or
-				defining graph of financial operations and then analyzing or executing them.
+				3. 2nd place in Battle Royal math competition by <a href="http://davincitrading.com/"
+				target="_blank">
+					Da Vinci Trading
+				</a>.
 
 				<br/>
 				<br/>
 
-				4. 1st place in Port Transition challenge by the Port of Rotterdam.
-				Developed an ML solution to predict distributions in the port.
+				4. 4th place in the algorithmic agent tower defense competition Terminal
+				by <a href="https://www.citadel.com/" target="_blank">
+					Citadel
+				</a>, a leading quant trading company.
 
 				<br/>
 				<br/>
 
-				5. 1st place in the Latvian Open Olympiad in Economics 2024,
+				5. 1st place in Port Transition challenge by the <a href="https://www.portofrotterdam.com/en"
+				target="_blank">
+					Port of Rotterdam
+				</a>.
+				Developed an ML solution to predict distributions.
+
+				<br/>
+				<br/>
+
+				6. 1st place in the Latvian Open Olympiad in Economics 2024,
 				2nd place in the National Olympiad in Economics 2023,
 				and 3rd place in the Latvian Linguistics Olympiad 2024.
 
