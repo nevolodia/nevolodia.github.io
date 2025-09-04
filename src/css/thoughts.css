@@ -1,0 +1,15 @@
+.thought-container
+{
+    text-align: left;
+}
+
+.thought-heading
+{
+    font-family: 'Abril Fatface', serif !important;
+
+    letter-spacing: 5px;
+    font-size: 5rem;
+    line-height: 5rem;
+
+    margin-top: 6px;
+}

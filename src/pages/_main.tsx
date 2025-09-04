@@ -6,6 +6,7 @@ import Home from "./home";
 import Study from "./study";
 import Work from './work';
 import Achievements from "./achievements";
+import Thoughts from './thoughts';
 import Gallery from "./gallery";
 import Contact from "./contact";
 import UnlistedBrainfuck from "./unlisted_brainfuck";
@@ -116,9 +117,9 @@ function _main ()
 						<Link link="/?p=study">Study</Link>
 						<Link link="/?p=work">Work</Link>
 						<Link link="/?p=achievements">Achivements</Link>
+						<Link link="/?p=thoughts">Thoughts</Link>
 						<Link link="/?p=gallery">Gallery</Link>
 						<Link link="/?p=contact">Contact</Link>
-						{/*<Link link="/?p=thoughts">Thoughts</Link>*/}
 					</div>
 
 					<div style={{display: activePage === "home" ? "block" : "none"}}>
@@ -145,11 +146,9 @@ function _main ()
 						<Contact/>
 					</div>
 
-					{/*}
 					<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
 						<Thoughts/>
 					</div>
-					*/}
 
 					{
 						activePage === "unlisted_brainfuck"
