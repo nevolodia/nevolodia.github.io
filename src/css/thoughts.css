@@ -8,8 +8,19 @@
     font-family: 'Abril Fatface', serif !important;
 
     letter-spacing: 5px;
-    font-size: 5rem;
-    line-height: 5rem;
+
+    font-size: 3.75rem;
+    line-height: 3.75rem;
+    line-break: anywhere;
 
     margin-top: 6px;
+}
+
+@media (min-width: 1050px)
+{
+    .thought-heading
+    {
+        font-size: 5rem;
+        line-height: 5rem;
+    }
 }
