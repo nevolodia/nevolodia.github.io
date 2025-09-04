@@ -16,23 +16,7 @@
 	box-sizing: border-box;
 	padding: 0 1.125rem 2rem;
 
-	backdrop-filter: blur(2px) brightness(0.5);
-}
-
-.main:before {
-	content: '';
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-
-	height: 100vh;
-
-	z-index: -1;
-	pointer-events: none; /* allows clicks through the mask */
-
-	background: linear-gradient(180deg, transparent 25%, rgba(0, 0, 0, 0.75) 60%);
+	background-color: rgb(0, 0, 0);
 }
 
 @media (min-width: 1050px) {

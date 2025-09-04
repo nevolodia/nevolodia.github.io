@@ -28,7 +28,7 @@
 	bottom: 0;
 
 	width: 100%;
-	height: 200%; /* extra height allows the grid to scroll */
+	height: 120%;
 
 	background-image: linear-gradient(
 			to right,
