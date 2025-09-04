@@ -1,11 +1,14 @@
-import React from 'react';
+// My components
 import GalleryComponent from "../components/GalleryComponent";
 
-function Gallery() {
 
+function Gallery()
+{
 	let images = [];
 	let i = 1;
-	while (true) {
+
+	while (true)
+	{
 		// check if the image exists
 		try {
 			const num = `${String(i).padStart(3, '0')}`;
@@ -20,11 +23,9 @@ function Gallery() {
 
 	return (
 		<div>
-
 			<GalleryComponent
 				images={images}
 			/>
-
 		</div>
 	);
 }

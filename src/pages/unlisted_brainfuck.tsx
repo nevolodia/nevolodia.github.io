@@ -1,6 +1,5 @@
-import React from 'react';
-
-function UnlistedBrainfuck() {
+function UnlistedBrainfuck()
+{
 	return (
 		<div>
 
@@ -8,7 +7,8 @@ function UnlistedBrainfuck() {
 			<br />
 
 			<iframe src="https://pastebin.com/embed_iframe/Taae81S2?theme=dark"
-			        style={{"border": "none", "borderRadius": "8px", "width": "100%", "height": "75vh"}}></iframe>
+			        style={{"border": "none", "borderRadius": "8px", "width": "100%", "height": "75vh"}}>
+			</iframe>
 
 		</div>
 	);

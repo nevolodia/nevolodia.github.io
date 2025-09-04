@@ -1,6 +1,9 @@
+// My components
 import Image from "../components/Image";
 
-function Study() {
+
+function Study()
+{
 	const me_in_university_big = require('../resources/images/tud.jpg');
 	const me_in_university = require('../resources/images/tud_sm.jpg');
 

@@ -1,7 +1,9 @@
-import React from 'react';
+// My components
 import Image from "../components/Image";
 
-function Achievements() {
+
+function Achievements()
+{
 	const brainfuck_x86 = require('../resources/images/brfck_x86_image.png');
 	const ads = require('../resources/images/ads.jpg');
 	const rott = require('../resources/images/rott.jpg');

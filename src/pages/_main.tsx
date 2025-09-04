@@ -1,25 +1,33 @@
+// Libraries
 import React, {useEffect} from 'react';
-import Link from "../components/Link";
 
+// Pages
 import Home from "./home";
-import Achievements from "./achievements";
 import Study from "./study";
+import Work from './work';
+import Achievements from "./achievements";
 import Gallery from "./gallery";
-import Thoughts from "./thoughts";
+import Contact from "./contact";
 import UnlistedBrainfuck from "./unlisted_brainfuck";
 
+// My components
+import Link from "../components/Link";
+
+// Css
 import '../css/main.css';
-import Contact from "./contact";
-import Work from './work';
 
-function _main() {
 
+function _main ()
+{
 	const [activePage, setActivePage] = React.useState("home");
-	function updatePageSelection() {
+
+	function updatePageSelection()
+	{
 		const urlParams = new URLSearchParams(window.location.search);
 		const page = urlParams.get('p');
 
-		switch (page) {
+		switch (page)
+		{
 			case "study":
 				setActivePage("study");
 				break;
@@ -47,22 +55,24 @@ function _main() {
 	}
 
 	// Update the page selection when the component mounts
-	useEffect(() => {
+	useEffect(() =>
+	{
 		updatePageSelection();
 	}, []);
 
 
 	// Update the page selection when the URL changes
-	useEffect(() => {
+	useEffect(() =>
+	{
 		updatePageSelection();
-
 		const handlePopState = () => {
 			updatePageSelection();
 		};
 
 		window.addEventListener('popstate', handlePopState);
 
-		return () => {
+		return () =>
+		{
 			window.removeEventListener('popstate', handlePopState);
 		};
 	}, []);
@@ -73,14 +83,16 @@ function _main() {
 	const originalReplaceState = history.replaceState;
 
 	// eslint-disable-next-line no-restricted-globals
-	history.pushState = function (state: any, title: string, url?: string | URL | null) {
+	history.pushState = function (state: any, title: string, url?: string | URL | null)
+	{
 		// eslint-disable-next-line no-restricted-globals
 		originalPushState.call(history, state, title, url);
 		updatePageSelection();
 	};
 
 	// eslint-disable-next-line no-restricted-globals
-	history.replaceState = function (state: any, title: string, url?: string | URL | null) {
+	history.replaceState = function (state: any, title: string, url?: string | URL | null)
+	{
 		// eslint-disable-next-line no-restricted-globals
 		originalReplaceState.call(history, state, title, url);
 		updatePageSelection();

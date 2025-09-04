@@ -1,7 +1,10 @@
-import Image from "../components/Image";
+// My components
 import Link from '../components/Link';
+import Image from "../components/Image";
 
-function Home() {
+
+function Home()
+{
 	const me = require('../resources/images/me.jpg');
 
 	return (
