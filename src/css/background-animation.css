@@ -1,0 +1,120 @@
+:root {
+	--bg: #000000;
+	--grid-line-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Grid container: fixed at the bottom with perspective */
+.bg-grid {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	height: 100vh;
+
+	overflow: hidden;
+	z-index: -2;
+
+	perspective: 56.25vh;
+}
+
+/* Grid lines: created from repeating linear gradients and animated */
+.bg-grid-lines {
+	position: absolute;
+
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+
+	width: 100%;
+	height: 200%; /* extra height allows the grid to scroll */
+
+	background-image: linear-gradient(
+			to right,
+			var(--grid-line-color) 1px,
+			transparent 1px
+	),
+	linear-gradient(
+			0deg,
+			var(--grid-line-color) 1px,
+			transparent 1px
+	);
+
+	background-size: 4vh 3vh;
+	background-repeat: repeat;
+
+	transform-origin: 100% 0 0;
+	animation: play 64s linear infinite;
+}
+
+@keyframes play {
+	from {
+		transform: rotateX(15deg) translateY(-50%);
+	}
+	to {
+		transform: rotateX(50deg) translateY(6%);
+	}
+}
+
+/* Mask overlay: darkens the top and horizon using gradients */
+.bg-grid-mask {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+
+	height: 100vh;
+
+	z-index: -1;
+	pointer-events: none; /* allows clicks through the mask */
+
+	background-image: linear-gradient(180deg, var(--bg) 15%, transparent 90%),
+	radial-gradient(
+			circle farthest-corner at 50% 0%,
+			transparent 60%,
+			var(--bg) 95%
+	);
+}
+
+.bg-grid-mask::before {
+	content: '';
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+
+	height: 100vh;
+
+	z-index: -1;
+	pointer-events: none; /* allows clicks through the mask */
+
+	background:
+			radial-gradient(
+					circle farthest-corner at 50% 70%,
+					var(--bg) 70%,
+					transparent 100%
+			);
+
+	opacity: 0;
+
+	animation: mask 64s linear infinite;
+}
+
+@keyframes mask {
+	0% {
+		opacity: 1;
+	}
+	0.55% {
+		opacity: 0;
+	}
+	95% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
