@@ -4,12 +4,18 @@ import '../css/link.css';
 
 function Link(props: { link: string, a_style?: boolean, children: React.ReactNode }) {
 	const { a_style = false, link, children } = props;
-	const handleMouseDown = () => {
+
+	const handleMouseDown = () =>
+	{
 		// eslint-disable-next-line no-restricted-globals
 		history.pushState(null, '', props.link);
+
+		// Notify listeners immediately
+		window.dispatchEvent(new Event('popstate'));
 	};
 
-	const onClick = (e: React.MouseEvent) => {
+	const onClick = (e: React.MouseEvent) =>
+	{
 		e.preventDefault();
 	};
 
