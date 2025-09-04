@@ -12,6 +12,9 @@ function Link(props: { link: string, a_style?: boolean, children: React.ReactNod
 
 		// Notify listeners immediately
 		window.dispatchEvent(new Event('popstate'));
+
+		// reset scroll position to top
+		window.scrollTo(0, 0);
 	};
 
 	const onClick = (e: React.MouseEvent) =>
