@@ -93,7 +93,18 @@ function renderThoughtDetail(payload: any, thought: string): React.ReactNode
                 { heading }
             </h2>
             <div className="thought-content">
-                {typeof body === 'string' ? body.split('\n').map((line: string, i: number) => <p key={i}>{line}</p>) : String(body)}
+                {
+                    typeof body === 'string'
+                    ? body.split('\n').map(
+                        (
+                            line: string,
+                            i: number
+                        ) => <p key={i} className="thought-text">
+                                { line }
+                            </p>
+                    )
+                    : String(body)
+                }
             </div>
         </div>
     );

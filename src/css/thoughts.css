@@ -7,11 +7,11 @@
 {
     font-family: 'Abril Fatface', serif !important;
 
-    letter-spacing: 5px;
-
-    font-size: 3.75rem;
-    line-height: 3.75rem;
     line-break: anywhere;
+
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+    letter-spacing: 2px;
 
     margin-top: 6px;
 }
@@ -22,5 +22,20 @@
     {
         font-size: 5rem;
         line-height: 5rem;
+        letter-spacing: 5px;
+    }
+}
+
+.thought-text
+{
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 1.125rem;
+}
+
+@media (min-width: 1050px)
+{
+    .thought-text
+    {
+        font-size: 2rem;
     }
 }

@@ -5,6 +5,8 @@
 	"homepage": "https://nevolodia.com/",
 	"dependencies": {
 		"@fontsource/abril-fatface": "^5.2.6",
+		"@fontsource/noto-sans-kr": "^5.2.6",
+		"@fontsource/roboto": "^5.2.6",
 		"@fontsource/roboto-mono": "^5.2.6",
 		"@fontsource/space-mono": "^5.2.8",
 		"@types/react": "^19.0.8",

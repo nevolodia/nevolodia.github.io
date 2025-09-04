@@ -6,6 +6,7 @@ import _main from './pages/_main';
 import '@fontsource/abril-fatface';
 import '@fontsource/space-mono';
 import '@fontsource/roboto-mono';
+import '@fontsource/roboto';
 
 // Styles
 import './css/background-animation.css';
