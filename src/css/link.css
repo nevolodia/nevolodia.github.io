@@ -1,10 +1,28 @@
 .link {
-	color: #ffffff;
 	text-decoration: underline;
 }
 
 .link:hover {
-	background-color: #ffffff;
-	color: #000000;
 	text-decoration: none;
 }
+
+.standard-style-link {
+	color: #ffffff;
+}
+
+.standard-style-link:hover {
+	background-color: #ffffff;
+	color: #000000;
+}
+
+.a-style-link {
+	color: #ffaf00;
+}
+
+.a-style-link:hover {
+	background-color: #ffaf00;
+	color: #ffffff;
+}
+
+
+
