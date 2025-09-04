@@ -4,6 +4,9 @@
 	"private": true,
 	"homepage": "https://nevolodia.com/",
 	"dependencies": {
+		"@fontsource/abril-fatface": "^5.2.6",
+		"@fontsource/roboto-mono": "^5.2.6",
+		"@fontsource/space-mono": "^5.2.8",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
 		"react": "^19.0.0",
@@ -22,20 +25,20 @@
 	},
 	"eslintConfig": {
 		"extends": [
-		"react-app",
-		"react-app/jest"
+			"react-app",
+			"react-app/jest"
 		]
 	},
 	"browserslist": {
 		"production": [
-		">0.2%",
-		"not dead",
-		"not op_mini all"
+			">0.2%",
+			"not dead",
+			"not op_mini all"
 		],
 		"development": [
-		"last 1 chrome version",
-		"last 1 firefox version",
-		"last 1 safari version"
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
 		]
 	},
 	"devDependencies": {
