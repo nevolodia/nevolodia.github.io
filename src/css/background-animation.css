@@ -1,11 +1,13 @@
-:root {
+:root
+{
 	--bg: #000000;
 	--grid-line-color: rgba(255, 255, 255, 0.3);
 }
 
-@media (min-width: 1050px) {
-
-	.bg-grid {
+@media (min-width: 1050px)
+{
+	.bg-grid
+	{
 		position: fixed;
 		left: 0;
 		right: 0;
@@ -19,7 +21,8 @@
 		perspective: 56.25vh;
 	}
 
-	.bg-grid-lines {
+	.bg-grid-lines
+	{
 		position: absolute;
 
 		left: 0;
@@ -48,16 +51,20 @@
 		animation: play 64s linear infinite;
 	}
 
-	@keyframes play {
-		from {
+	@keyframes play
+	{
+		from
+		{
 			transform: rotateX(15deg) translateY(-50%);
 		}
-		to {
+		to
+		{
 			transform: rotateX(50deg) translateY(6%);
 		}
 	}
 
-	.bg-grid-mask {
+	.bg-grid-mask
+	{
 		position: fixed;
 		left: 0;
 		right: 0;
@@ -77,7 +84,8 @@
 		);
 	}
 
-	.bg-grid-mask::before {
+	.bg-grid-mask::before
+	{
 		content: '';
 
 		position: absolute;
@@ -103,19 +111,23 @@
 		animation: mask 64s linear infinite;
 	}
 
-	@keyframes mask {
-		0% {
+	@keyframes mask
+	{
+		0%
+		{
 			opacity: 1;
 		}
-		0.55% {
+		0.55%
+		{
 			opacity: 0;
 		}
-		95% {
+		95%
+		{
 			opacity: 0;
 		}
-		100% {
+		100%
+		{
 			opacity: 1;
 		}
 	}
-
 }
