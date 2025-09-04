@@ -2,14 +2,15 @@ import React, {useEffect} from 'react';
 import Link from "../components/Link";
 
 import Home from "./home";
-import Education from "./education";
-import Experience from "./experience";
+import Achievements from "./achievements";
+import Study from "./study";
 import Gallery from "./gallery";
 import Thoughts from "./thoughts";
 import UnlistedBrainfuck from "./unlisted_brainfuck";
 
 import '../css/main.css';
 import Contact from "./contact";
+import Work from './work';
 
 function _main() {
 
@@ -19,11 +20,14 @@ function _main() {
 		const page = urlParams.get('p');
 
 		switch (page) {
-			case "education":
-				setActivePage("education");
+			case "study":
+				setActivePage("study");
 				break;
-			case "experience":
-				setActivePage("experience");
+			case "work":
+				setActivePage("work");
+				break;
+			case "achievements":
+				setActivePage("achievements");
 				break;
 			case "gallery":
 				setActivePage("gallery");
@@ -83,52 +87,66 @@ function _main() {
 	};
 
 	return (
-		<div className="bg">
-			<div className="main">
-				<h2>Vladimir Kirill Bickov</h2>
-
-				<div className="menu">
-					<Link link="/">Home</Link>
-					<Link link="/?p=education">Education</Link>
-					<Link link="/?p=experience">Experience</Link>
-					<Link link="/?p=gallery">Gallery</Link>
-					<Link link="/?p=contact">Contact</Link>
-					{/*<Link link="/?p=thoughts">Thoughts</Link>*/}
-				</div>
-
-				<div style={{display: activePage === "home" ? "block" : "none"}}>
-					<Home/>
-				</div>
-
-				<div style={{display: activePage === "education" ? "block" : "none"}}>
-					<Education/>
-				</div>
-
-				<div style={{display: activePage === "experience" ? "block" : "none"}}>
-					<Experience/>
-				</div>
-
-				<div style={{display: activePage === "gallery" ? "block" : "none"}}>
-					<Gallery/>
-				</div>
-
-				<div style={{display: activePage === "contact" ? "block" : "none"}}>
-					<Contact/>
-				</div>
-
-				{/*}
-				<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
-					<Thoughts/>
-				</div>
-				*/}
-
-				{
-					activePage === "unlisted_brainfuck"
-					? <UnlistedBrainfuck/>
-					: null
-				}
+		<>
+			<div className="bg-grid">
+				<div className="bg-grid-lines"></div>
 			</div>
-		</div>
+			<div className="bg-grid-mask"></div>
+
+			<div className="everything-container">
+				<div className="main">
+					<h2 className="header-name">
+						Vladimir Kirill Bickov
+					</h2>
+
+					<div className="menu">
+						<Link link="/">Home</Link>
+						<Link link="/?p=study">Study</Link>
+						<Link link="/?p=work">Work</Link>
+						<Link link="/?p=achievements">Achivements</Link>
+						<Link link="/?p=gallery">Gallery</Link>
+						<Link link="/?p=contact">Contact</Link>
+						{/*<Link link="/?p=thoughts">Thoughts</Link>*/}
+					</div>
+
+					<div style={{display: activePage === "home" ? "block" : "none"}}>
+						<Home/>
+					</div>
+
+					<div style={{display: activePage === "study" ? "block" : "none"}}>
+						<Study/>
+					</div>
+
+					<div style={{display: activePage === "work" ? "block" : "none"}}>
+						<Work/>
+					</div>
+
+					<div style={{display: activePage === "achievements" ? "block" : "none"}}>
+						<Achievements/>
+					</div>
+
+					<div style={{display: activePage === "gallery" ? "block" : "none"}}>
+						<Gallery/>
+					</div>
+
+					<div style={{display: activePage === "contact" ? "block" : "none"}}>
+						<Contact/>
+					</div>
+
+					{/*}
+					<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
+						<Thoughts/>
+					</div>
+					*/}
+
+					{
+						activePage === "unlisted_brainfuck"
+						? <UnlistedBrainfuck/>
+						: null
+					}
+				</div>
+			</div>
+		</>
 	);
 }
 

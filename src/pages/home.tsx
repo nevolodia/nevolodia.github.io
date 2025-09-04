@@ -1,82 +1,69 @@
-import React from 'react';
 import Image from "../components/Image";
-import GalleryComponent from "../components/GalleryComponent";
+import Link from '../components/Link';
 
 function Home() {
-	const brainfuck_x86 = require('../resources/images/home/brfck_x86_image.png');
-	const ads = require('../resources/images/home/ads.jpg');
-	const rott = require('../resources/images/home/rott.jpg');
-	const bunq = require('../resources/images/home/bunq.jpg');
+	const me = require('../resources/images/me.jpg');
 
 	return (
 		<div>
 			<p>
-				My name is Vladimir, and I am doing some Computer Science and Math things.
+				Hello, dear visitor!
 
 				<br/>
 				<br/>
 
-				Some achievements of mine:
+				My name is Vladimir, and this is my website.
 
 				<br/>
 				<br/>
 
-				1. Wrote a jq implementation in Haskell,
-				JIT compiler for Brainfuck in x86 Assembly,
-				and other cool stuff.
+				I like Computer Science, Mathematics, and some other things, you can find on these pages:
 
 				<br/>
 				<br/>
 
-				2. 2nd place in hackathon by <a href="https://www.bunq.com/" target="_blank">
-					bunq bank
-				</a>, Europe's second largest fintech bank.
-				Developed for executing graph of financial operations, integrated ML tools.
+				<Link link="?p=study" a_style={true}>
+					Study
+				</Link> & <Link link="?p=work" a_style={true}>
+					Work
+				</Link> &lt;- Where do I study? Where do I work?
 
 				<br/>
 				<br/>
 
-				3. 2nd place in Battle Royal math competition by <a href="http://davincitrading.com/"
-				target="_blank">
-					Da Vinci Trading
-				</a>.
+				Some achievements, like making Braif. compiler, or winning hackathons -&gt; <Link link="?p=achievements" a_style={true}>
+					Achievements
+				</Link>
 
 				<br/>
 				<br/>
 
-				4. 4th place in the algorithmic agent tower defense competition Terminal
-				by <a href="https://www.citadel.com/" target="_blank">
-					Citadel
-				</a>, a leading quant trading company.
+				Some blog posts of mine -&gt; <Link link="?p=thoughts" a_style={true}>
+					Thoughts
+				</Link>
 
 				<br/>
 				<br/>
 
-				5. 1st place in Port Transition challenge by the <a href="https://www.portofrotterdam.com/en"
-				target="_blank">
-					Port of Rotterdam
-				</a>.
-				Developed an ML solution to predict distributions.
+				<Link link="?p=gallery" a_style={true}>
+					Gallery
+				</Link> &lt;- Some photos, memes, and other stuff I like
 
 				<br/>
 				<br/>
 
-				6. 1st place in the Latvian Open Olympiad in Economics 2024,
-				2nd place in the National Olympiad in Economics 2023,
-				and 3rd place in the Latvian Linguistics Olympiad 2024.
+				How to contact me? -&gt; <Link link="?p=contact" a_style={true}>
+					Contact
+				</Link>
 
 				<br/>
 				<br/>
 
-				Check out the gallery of previously described achievements:
+				<Image link={me}/>
 
 				<br/>
-				<br/>
 
-				<Image link={brainfuck_x86}/>
-				<Image link={bunq}/>
-				<Image link={ads}/>
-				<Image link={rott}/>
+				I use Arch btw;)
 			</p>
 		</div>
 	);
