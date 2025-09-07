@@ -50,7 +50,7 @@ function Home()
 
 				<Link link="?p=gallery" a_style={true}>
 					Gallery
-				</Link> &lt;- Some photos, memes, and other stuff I like
+				</Link> &lt;- Some photos I took
 
 				<br/>
 				<br/>
