@@ -182,6 +182,18 @@ function Thoughts()
             <p>
                 {content}
             </p>
+
+            {
+                /*Invisible element to load fonts early*/
+                <div style={{position: 'absolute', left: '-9999px', top: '-9999px', visibility: 'hidden', height: 0, width: 0, overflow: 'hidden'}}>
+                    <span className="load-font-1">
+                        1
+                        </span>
+                    <span className="load-font-2">
+                        2
+                    </span>
+                </div>
+            }
 		</div>
 	);
 }
