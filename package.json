@@ -14,40 +14,23 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-medium-image-zoom": "^5.2.13",
-		"react-scripts": "5.0.1",
 		"typescript": "^4.9.5"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
+		"start": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
 		"optimize:images": "bun run scripts/optimize-images.mjs",
-		"prebuild": "bun run optimize:images"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"prebuild": "bun run optimize:images",
+		"postbuild": "bun run scripts/prerender-home.mjs"
 	},
 	"devDependencies": {
+		"@vitejs/plugin-react": "^6.0.2",
 		"gh-pages": "^6.3.0",
 		"playwright-core": "^1.60.0",
-		"sharp": "^0.34.5"
+		"sharp": "^0.34.5",
+		"vite": "^8.0.16"
 	}
 }

@@ -150,29 +150,31 @@ function _main ()
 						<Work/>
 					</div>
 
-					<Suspense fallback={null}>
-						<div style={{display: activePage === "achievements" ? "block" : "none"}}>
-							{visited.has("achievements") && <Achievements/>}
-						</div>
+					{/* Suspense sits INSIDE each conditional (not around them):
+					    on the first render nothing lazy is mounted, so the initial
+					    tree is plain divs — required for clean hydration of the
+					    prerendered home page (snapshots can't encode Suspense). */}
+					<div style={{display: activePage === "achievements" ? "block" : "none"}}>
+						{visited.has("achievements") && <Suspense fallback={null}><Achievements/></Suspense>}
+					</div>
 
-						<div style={{display: activePage === "gallery" ? "block" : "none"}}>
-							{visited.has("gallery") && <Gallery/>}
-						</div>
+					<div style={{display: activePage === "gallery" ? "block" : "none"}}>
+						{visited.has("gallery") && <Suspense fallback={null}><Gallery/></Suspense>}
+					</div>
 
-						<div style={{display: activePage === "contact" ? "block" : "none"}}>
-							<Contact/>
-						</div>
+					<div style={{display: activePage === "contact" ? "block" : "none"}}>
+						<Contact/>
+					</div>
 
-						<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
-							{visited.has("thoughts") && <Thoughts/>}
-						</div>
+					<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
+						{visited.has("thoughts") && <Suspense fallback={null}><Thoughts/></Suspense>}
+					</div>
 
-						{
-							activePage === "unlisted_brainfuck"
-							? <UnlistedBrainfuck/>
-							: null
-						}
-					</Suspense>
+					{
+						activePage === "unlisted_brainfuck"
+						? <Suspense fallback={null}><UnlistedBrainfuck/></Suspense>
+						: null
+					}
 					</div>
 				</div>
 			</div>

@@ -5,18 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<meta name="theme-color" content="#000000" />
-		<link rel="icon" href="%PUBLIC_URL%/logo512.ico" />
-		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+		<link rel="icon" href="/logo512.ico" />
+		<link rel="apple-touch-icon" href="/logo192.png" />
 		
 		
 		<!--
-		Notice the use of %PUBLIC_URL% in the tags above.
-		It will be replaced with the URL of the `public` folder during the build.
-		Only files inside the `public` folder can be referenced from the HTML.
-
-		Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-		work correctly both with client-side routing and a non-root public URL.
-		Learn how to configure a non-root public URL by running `npm run build`.
+		Root-absolute URLs ("/fonts/...") resolve to files in the `public/`
+		folder, which Vite copies verbatim into the build output root.
 		-->
 
 
@@ -35,8 +30,8 @@
 		     highest priority so the real face lands before/at first paint; paired
 		     with metric-matched fallbacks below so the swap causes no layout
 		     shift. crossorigin is required for font preloads. -->
-		<link rel="preload" as="font" type="font/woff2" crossorigin href="%PUBLIC_URL%/fonts/roboto-mono-latin-400-normal.woff2" />
-		<link rel="preload" as="font" type="font/woff2" crossorigin href="%PUBLIC_URL%/fonts/space-mono-latin-400-normal.woff2" />
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/roboto-mono-latin-400-normal.woff2" />
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/space-mono-latin-400-normal.woff2" />
 
 		<!-- Critical @font-face declared inline (served verbatim, not bundled by
 		     webpack) so it parses together with the preload at the top of the
@@ -50,14 +45,14 @@
 				font-style: normal;
 				font-weight: 400;
 				font-display: swap;
-				src: url('%PUBLIC_URL%/fonts/roboto-mono-latin-400-normal.woff2') format('woff2');
+				src: url('/fonts/roboto-mono-latin-400-normal.woff2') format('woff2');
 			}
 			@font-face {
 				font-family: 'Space Mono';
 				font-style: normal;
 				font-weight: 400;
 				font-display: swap;
-				src: url('%PUBLIC_URL%/fonts/space-mono-latin-400-normal.woff2') format('woff2');
+				src: url('/fonts/space-mono-latin-400-normal.woff2') format('woff2');
 			}
 
 			/* Metric-matched fallbacks (zero-reflow swap). ascent-override =
@@ -84,5 +79,6 @@
 	<body>
 		<noscript>You need to enable JavaScript to see my website. I promise not to spy over you through JS:)</noscript>
 		<div id="root"></div>
+		<script type="module" src="/src/index.tsx"></script>
 	</body>
 </html>
