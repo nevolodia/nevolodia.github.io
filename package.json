@@ -23,7 +23,9 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"optimize:images": "bun run scripts/optimize-images.mjs",
+		"prebuild": "bun run optimize:images"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -44,6 +46,8 @@
 		]
 	},
 	"devDependencies": {
-		"gh-pages": "^6.3.0"
+		"gh-pages": "^6.3.0",
+		"playwright-core": "^1.60.0",
+		"sharp": "^0.34.5"
 	}
 }

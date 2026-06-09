@@ -5,8 +5,6 @@ import Image from "../components/Image";
 
 function Home()
 {
-	const me = require('../resources/images/me.jpg');
-
 	return (
 		<div>
 			<p>
@@ -62,7 +60,7 @@ function Home()
 				<br/>
 				<br/>
 
-				<Image link={me}/>
+				<Image name="me.jpg" highFetchPriority={true}/>
 
 				<br/>
 

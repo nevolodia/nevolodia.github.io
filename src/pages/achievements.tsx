@@ -4,11 +4,6 @@ import Image from "../components/Image";
 
 function Achievements()
 {
-	const brainfuck_x86 = require('../resources/images/brfck_x86_image.png');
-	const ads = require('../resources/images/ads.jpg');
-	const rott = require('../resources/images/rott.jpg');
-	const bunq = require('../resources/images/bunq.jpg');
-
 	return (
 		<div>
 			<p>
@@ -69,10 +64,10 @@ function Achievements()
 				<br/>
 				<br/>
 
-				<Image link={brainfuck_x86}/>
-				<Image link={bunq}/>
-				<Image link={ads}/>
-				<Image link={rott}/>
+				<Image name="brfck_x86_image.png"/>
+				<Image name="bunq.jpg"/>
+				<Image name="ads.jpg"/>
+				<Image name="rott.jpg"/>
 
 				<br/>
 				<br/>

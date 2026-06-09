@@ -30,7 +30,56 @@
 		--------------------------------------------------------------------
 		-->
 
-		
+		<!-- Preload the critical self-hosted woff2 (the CLS fix). Roboto Mono 400
+		     is the body face; Space Mono 400 covers the headline / nav. Fetched at
+		     highest priority so the real face lands before/at first paint; paired
+		     with metric-matched fallbacks below so the swap causes no layout
+		     shift. crossorigin is required for font preloads. -->
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="%PUBLIC_URL%/fonts/roboto-mono-latin-400-normal.woff2" />
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="%PUBLIC_URL%/fonts/space-mono-latin-400-normal.woff2" />
+
+		<!-- Critical @font-face declared inline (served verbatim, not bundled by
+		     webpack) so it parses together with the preload at the top of the
+		     head. Each real face pairs with a metric-matched "* Fallback" face
+		     whose ascent/descent/line-gap/size-adjust are derived from the woff2
+		     metrics; the fallback's line box equals the real face's, so the
+		     font-display:swap from fallback -> real produces NO layout shift. -->
+		<style>
+			@font-face {
+				font-family: 'Roboto Mono';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url('%PUBLIC_URL%/fonts/roboto-mono-latin-400-normal.woff2') format('woff2');
+			}
+			@font-face {
+				font-family: 'Space Mono';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url('%PUBLIC_URL%/fonts/space-mono-latin-400-normal.woff2') format('woff2');
+			}
+
+			/* Metric-matched fallbacks (zero-reflow swap). ascent-override =
+			   ascent/unitsPerEm, descent-override = |descent|/unitsPerEm,
+			   size-adjust = real-advance-em / system-mono-advance-em. */
+			@font-face {
+				font-family: 'Roboto Mono Fallback';
+				src: local('DejaVu Sans Mono'), local('Menlo'), local('Consolas'), local('Courier New');
+				ascent-override: 104.79%;
+				descent-override: 27.10%;
+				line-gap-override: 0%;
+				size-adjust: 100%;
+			}
+			@font-face {
+				font-family: 'Space Mono Fallback';
+				src: local('DejaVu Sans Mono'), local('Menlo'), local('Consolas'), local('Courier New');
+				ascent-override: 112.00%;
+				descent-override: 36.10%;
+				line-gap-override: 0%;
+				size-adjust: 102%;
+			}
+		</style>
 	</head>
 	<body>
 		<noscript>You need to enable JavaScript to see my website. I promise not to spy over you through JS:)</noscript>

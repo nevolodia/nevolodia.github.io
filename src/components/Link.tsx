@@ -2,8 +2,8 @@ import React from 'react';
 import '../css/link.css';
 
 
-function Link(props: { link: string, a_style?: boolean, children: React.ReactNode }) {
-	const { a_style = false, link, children } = props;
+function Link(props: { link: string, a_style?: boolean, active?: boolean, children: React.ReactNode }) {
+	const { a_style = false, active = false, link, children } = props;
 
 	const handleMouseDown = () =>
 	{
@@ -24,7 +24,7 @@ function Link(props: { link: string, a_style?: boolean, children: React.ReactNod
 
 	return (
 		<a
-			className={`link ${a_style ? "a-style-link" : "standard-style-link"}`}
+			className={`link ${a_style ? "a-style-link" : "standard-style-link"}${active ? " active-link" : ""}`}
 			href={link}
 			onMouseDown={handleMouseDown}
 			onClick={onClick}

@@ -1,30 +1,20 @@
 // My components
 import GalleryComponent from "../components/GalleryComponent";
+import manifest from "../resources/optimized-manifest.json";
 
 
 function Gallery()
 {
-	let images = [];
-	let i = 1;
-
-	while (true)
-	{
-		// check if the image exists
-		try {
-			const num = `${String(i).padStart(3, '0')}`;
-			images.push(
-				require(`../resources/images/gallery/${num}.jpg`)
-			);
-		} catch (e) {
-			break;
-		}
-		i++;
-	}
+	// Auto-discover gallery images from the optimized manifest (replaces the
+	// old try/require loop over the raw jpgs).
+	const names = Object.keys(manifest)
+		.filter((name) => name.startsWith("gallery/"))
+		.sort();
 
 	return (
 		<div>
 			<GalleryComponent
-				images={images}
+				names={names}
 			/>
 		</div>
 	);

@@ -1,40 +1,121 @@
 .everything-container {
-	width: 100% !important;
+	width: 100%;
 	min-height: 100vh;
 
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
+
+	box-sizing: border-box;
+	padding: 3.4rem 1rem;
+}
+
+@media (min-width: 1050px) {
+	.everything-container {
+		padding: 3.6rem 1.5rem;
+	}
+}
+
+/* The framed panel: content sits in a bordered box with margins on all
+   sides (the .everything-container padding), floating over the grid. */
+.panel {
+	position: relative;
+	width: min(777px, 100%);
+	min-height: calc(100vh - 6.8rem);
+
+	box-sizing: border-box;
+	border: 1px solid rgba(189, 189, 189, 0.55);
+
+	text-align: center;
+	background-color: rgb(0, 0, 0);
+}
+
+/* Corner ticks (from concept C): accent "viewport" marks at all four
+   corners of the panel frame. Top two via pseudo-elements, bottom two
+   via explicit spans. */
+.panel::before,
+.panel::after,
+.panel-corner-bl,
+.panel-corner-br {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.panel::before {
+	content: "";
+	top: -1px;
+	left: -1px;
+	border-top: 2px solid #ffaf00;
+	border-left: 2px solid #ffaf00;
+}
+
+.panel::after {
+	content: "";
+	top: -1px;
+	right: -1px;
+	border-top: 2px solid #ffaf00;
+	border-right: 2px solid #ffaf00;
+}
+
+.panel-corner-bl {
+	bottom: -1px;
+	left: -1px;
+	border-bottom: 2px solid #ffaf00;
+	border-left: 2px solid #ffaf00;
+}
+
+.panel-corner-br {
+	bottom: -1px;
+	right: -1px;
+	border-bottom: 2px solid #ffaf00;
+	border-right: 2px solid #ffaf00;
+}
+
+@media (min-width: 1050px) {
+	.panel {
+		min-height: calc(100vh - 7.2rem);
+	}
 }
 
 .main {
-	min-height: 100vh;
-
-	text-align: center;
-	width: min(777px, 100%);
-
 	box-sizing: border-box;
-	padding: 0 1.125rem 2rem;
-
-	background-color: rgb(0, 0, 0);
+	padding: 1.25rem 1.125rem 2rem;
 }
 
 @media (min-width: 1050px) {
 	.main {
-		border-right: 1px solid #bdbdbd;
-		border-left: 1px solid #bdbdbd;
-		padding: 0 2.5rem 3rem;
+		padding: 1.5rem 2.5rem 3rem;
 	}
 }
 
+/* Big one-line name: 22 mono chars (advance 0.6em) must fit the panel's
+   inner width at every viewport, hence the calc-based size with a cap. */
 .header-name {
-	margin-bottom: .375rem;
+	white-space: nowrap;
+	font-size: min(2.38rem, calc((100vw - 3.5rem) / 20.3));
+	margin: .98rem .5rem .81rem;
 }
 
-@media (min-width: 1050px) {
-	.header-name {
-		margin-bottom: .75rem;
-	}
+.header-accent {
+	color: #ffaf00;
+}
+
+/* The bar below the name: same height as the concept panel's top bar,
+   spanning the full panel width, holding the (unchanged) page links. */
+.panel-bar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	box-sizing: border-box;
+	min-height: 2.6rem;
+	padding: .3rem 1rem;
+
+	border-top: 1px solid rgba(189, 189, 189, 0.55);
+	border-bottom: 1px solid rgba(189, 189, 189, 0.55);
 }
 
 .menu {
@@ -43,12 +124,15 @@
 	flex-wrap: wrap;
 	column-gap: 1rem;
 	row-gap: .3rem;
-	margin-bottom: 1.25rem;
 }
 
-@media (min-width: 1050px) {
-	.menu {
-		margin-bottom: 1.75rem;
+.menu a {
+	font-size: 1.1rem;
+}
+
+@media (max-width: 777px) {
+	.menu a {
+		font-size: .8rem;
 	}
 }
 

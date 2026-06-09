@@ -1,15 +1,11 @@
 // Libraries
-import React, {useEffect} from 'react';
+import React, {useEffect, Suspense, lazy} from 'react';
 
-// Pages
+// Pages (light ones stay in the main bundle)
 import Home from "./home";
 import Study from "./study";
 import Work from './work';
-import Achievements from "./achievements";
-import Thoughts from './thoughts';
-import Gallery from "./gallery";
 import Contact from "./contact";
-import UnlistedBrainfuck from "./unlisted_brainfuck";
 
 // My components
 import Link from "../components/Link";
@@ -17,10 +13,25 @@ import Link from "../components/Link";
 // Css
 import '../css/main.css';
 
+// Heavy pages are code-split into separate chunks, loaded on first visit.
+const Achievements = lazy(() => import("./achievements"));
+const Thoughts = lazy(() => import("./thoughts"));
+const Gallery = lazy(() => import("./gallery"));
+const UnlistedBrainfuck = lazy(() => import("./unlisted_brainfuck"));
+
 
 function _main ()
 {
 	const [activePage, setActivePage] = React.useState("home");
+
+	// Pages visited so far: a lazy page's chunk is fetched on first visit and
+	// the page stays mounted afterwards (so switching back is instant).
+	const [visited, setVisited] = React.useState<Set<string>>(() => new Set(["home"]));
+
+	useEffect(() =>
+	{
+		setVisited((prev) => prev.has(activePage) ? prev : new Set(prev).add(activePage));
+	}, [activePage]);
 
 	function updatePageSelection()
 	{
@@ -107,21 +118,26 @@ function _main ()
 			<div className="bg-grid-mask"></div>
 
 			<div className="everything-container">
-				<div className="main">
+				<div className="panel">
+					<span className="panel-corner-bl"></span>
+					<span className="panel-corner-br"></span>
 					<h2 className="header-name">
-						Vladimir Kirill Bickov
+						<span className="header-accent">Vladimir</span> Kirill Bickov
 					</h2>
 
-					<div className="menu">
-						<Link link="/">Home</Link>
-						<Link link="/?p=study">Study</Link>
-						<Link link="/?p=work">Work</Link>
-						<Link link="/?p=achievements">Achivements</Link>
-						<Link link="/?p=thoughts">Thoughts</Link>
-						<Link link="/?p=gallery">Gallery</Link>
-						<Link link="/?p=contact">Contact</Link>
+					<div className="panel-bar">
+						<div className="menu">
+							<Link link="/" active={activePage === "home"}>Home</Link>
+							<Link link="/?p=study" active={activePage === "study"}>Study</Link>
+							<Link link="/?p=work" active={activePage === "work"}>Work</Link>
+							<Link link="/?p=achievements" active={activePage === "achievements"}>Achivements</Link>
+							<Link link="/?p=thoughts" active={activePage === "thoughts"}>Thoughts</Link>
+							<Link link="/?p=gallery" active={activePage === "gallery"}>Gallery</Link>
+							<Link link="/?p=contact" active={activePage === "contact"}>Contact</Link>
+						</div>
 					</div>
 
+					<div className="main">
 					<div style={{display: activePage === "home" ? "block" : "none"}}>
 						<Home/>
 					</div>
@@ -134,27 +150,30 @@ function _main ()
 						<Work/>
 					</div>
 
-					<div style={{display: activePage === "achievements" ? "block" : "none"}}>
-						<Achievements/>
-					</div>
+					<Suspense fallback={null}>
+						<div style={{display: activePage === "achievements" ? "block" : "none"}}>
+							{visited.has("achievements") && <Achievements/>}
+						</div>
 
-					<div style={{display: activePage === "gallery" ? "block" : "none"}}>
-						<Gallery/>
-					</div>
+						<div style={{display: activePage === "gallery" ? "block" : "none"}}>
+							{visited.has("gallery") && <Gallery/>}
+						</div>
 
-					<div style={{display: activePage === "contact" ? "block" : "none"}}>
-						<Contact/>
-					</div>
+						<div style={{display: activePage === "contact" ? "block" : "none"}}>
+							<Contact/>
+						</div>
 
-					<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
-						<Thoughts/>
-					</div>
+						<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
+							{visited.has("thoughts") && <Thoughts/>}
+						</div>
 
-					{
-						activePage === "unlisted_brainfuck"
-						? <UnlistedBrainfuck/>
-						: null
-					}
+						{
+							activePage === "unlisted_brainfuck"
+							? <UnlistedBrainfuck/>
+							: null
+						}
+					</Suspense>
+					</div>
 				</div>
 			</div>
 		</>

@@ -1,126 +1,68 @@
 // Libraries
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 // My components
 import Link from "../components/Link";
+
+// Posts (explicit typed import map — add a new post by importing its JSON
+// and appending an entry below; keeps everything build-time and type-checked)
+import post001 from "../resources/thoughts/001.json";
 
 // Styles
 import '../css/thoughts.css';
 
 
-type ThoughtIndex =
+type Post =
 {
-    list:
-    {
-        number: string
-        title?: string
-    }[]
-    byNumber: Record<string, any>
+    number: string
+    title: string
+    content: string
 };
 
-function createThoughtsIndex(): ThoughtIndex
-{
-    try
-    {
-        const ctx = (require as any).context('../resources/thoughts', false, /\.json$/);
-        const entries:
-        {
-            number: string
-            title?: string
-        }[] = ctx.keys()
-            .map((k: string) =>
-            {
-                const match = k.match(/(\d+)\.json$/);
-                const num = match ? match[1] : k.replace('./', '');
-                const data = ctx(k);
-                const title = (data?.title || data?.heading || `Thought ${num}`) as string | undefined;
-                return {
-                    number: num,
-                    title
-                };
-            })
-            .sort((a: any, b: any) => Number(a.number) - Number(b.number));
-        
-        const byNumber: Record<string, any> = {};
-        entries.forEach((e) =>
-        {
-            try
-            {
-                byNumber[e.number] = ctx(`./${e.number}.json`);
-            }
-            catch {}
-        });
-        return {
-            list: entries,
-            byNumber
-        };
-    }
-    catch
-    {
-        return {
-            list: [],
-            byNumber: {}
-        } as ThoughtIndex;
-    }
-}
+const POSTS: Post[] = [
+    { number: "001", title: post001.title, content: post001.content },
+].sort((a, b) => Number(a.number) - Number(b.number));
 
 function normalizeThoughtId(id: string): string
 {
     return String(Number(id)).padStart(3, '0');
 }
 
-function extractHeading(payload: any, thought: string): string
+function getPost(id: string): Post | undefined
 {
-    return payload?.title || payload?.heading || `Thought ${Number(thought)}`;
+    const normalized = normalizeThoughtId(id);
+    return POSTS.find((p) => p.number === normalized || p.number === id);
 }
 
-function extractBody(payload: any): string | any
+function renderThoughtDetail(post: Post): React.ReactNode
 {
-    return payload?.content || payload?.text || payload?.body || payload;
-}
-
-function renderThoughtDetail(payload: any, thought: string): React.ReactNode
-{
-    const heading = extractHeading(payload, thought);
-    const body = extractBody(payload);
-
     return (
         <div className="thought-container">
             <Link link="?p=thoughts">
                 ← Back
             </Link>
             <h2 className="thought-heading">
-                { heading }
+                { post.title }
             </h2>
             <div className="thought-content">
                 {
-                    typeof body === 'string'
-                    ? body.split('\n').map(
-                        (
-                            line: string,
-                            i: number
-                        ) => <p key={i} className="thought-text">
+                    post.content.split('\n').map(
+                        (line: string, i: number) =>
+                            <p key={i} className="thought-text">
                                 { line }
                             </p>
                     )
-                    : String(body)
                 }
             </div>
         </div>
     );
 }
 
-function renderThoughtList(
-    list:
-    {
-        number: string
-        title?: string
-    }[]
-): React.ReactNode
+function renderThoughtList(list: Post[]): React.ReactNode
 {
-    return (list.length ? list : []).map((t, index) => (
-        <div key={t.number}>
-            {index + 1}. <Link link={`?p=thoughts&thought=${t.number}`}>{t.title || `Thought ${t.number}`}</Link>
+    return list.map((post, index) => (
+        <div key={post.number}>
+            {index + 1}. <Link link={`?p=thoughts&thought=${post.number}`}>{post.title}</Link>
         </div>
     ));
 }
@@ -131,19 +73,14 @@ function Thoughts()
     // if we have ?thought=n, we show the thought
     // otherwise, we show the selection of thoughts
 
-    const [content, setContent] = useState<React.ReactNode>(null);
     const [thought, setThought] = useState<string | null>(null);
-
-    // Build-time scan of resources/thoughts for json files
-    const thoughtsIndex = useMemo<ThoughtIndex>(() => createThoughtsIndex(), []);
 
     useEffect(() =>
     {
         const handleUrlChange = () =>
         {
             const urlParams = new URLSearchParams(window.location.search);
-            const thought = urlParams.get('thought');
-            setThought(thought);
+            setThought(urlParams.get('thought'));
         };
 
         // Initial load
@@ -154,46 +91,24 @@ function Thoughts()
         return () => window.removeEventListener('popstate', handleUrlChange);
     }, []);
 
-    useEffect(() =>
+    let content: React.ReactNode;
+    if (thought)
     {
-        const loadContent = () => {
-            if (thought) {
-                try {
-                    const thoughtStr = normalizeThoughtId(thought);
-                    const data = thoughtsIndex.byNumber[thoughtStr] || thoughtsIndex.byNumber[thought];
-                    const payload = (data?.default ?? data) as any;
-                    if (!payload) throw new Error('Not found');
-                    setContent(renderThoughtDetail(payload, thought));
-                } catch (error) {
-                    console.error('Error loading thought:', error);
-                    setContent(<div>Error loading thought content</div>);
-                }
-            } else {
-                setContent(renderThoughtList(thoughtsIndex.list));
-            }
-        };
+        const post = getPost(thought);
+        content = post
+            ? renderThoughtDetail(post)
+            : <div>Error loading thought content</div>;
+    }
+    else
+    {
+        content = renderThoughtList(POSTS);
+    }
 
-        loadContent();
-    }, [thought, thoughtsIndex]);
-
-    
 	return (
 		<div>
             <p>
                 {content}
             </p>
-
-            {
-                /*Invisible element to load fonts early*/
-                <div style={{position: 'absolute', left: '-9999px', top: '-9999px', visibility: 'hidden', height: 0, width: 0, overflow: 'hidden'}}>
-                    <span className="load-font-1">
-                        1
-                        </span>
-                    <span className="load-font-2">
-                        2
-                    </span>
-                </div>
-            }
 		</div>
 	);
 }

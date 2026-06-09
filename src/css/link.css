@@ -15,6 +15,10 @@
 	color: #000000;
 }
 
+.standard-style-link.active-link {
+	color: #ffaf00;
+}
+
 .a-style-link {
 	color: #ffaf00;
 }

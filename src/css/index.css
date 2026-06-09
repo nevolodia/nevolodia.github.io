@@ -22,11 +22,11 @@ body {
 /* Typography */
 
 p {
-	font-family: 'Roboto Mono', monospace, 'Courier New';
+	font-family: 'Roboto Mono', 'Roboto Mono Fallback', monospace, 'Courier New';
 }
 
 h2, a {
-	font-family: 'Space Mono', monospace, 'Courier New';
+	font-family: 'Space Mono', 'Space Mono Fallback', monospace, 'Courier New';
 }
 
 h2 {
@@ -35,7 +35,7 @@ h2 {
 }
 
 p, a {
-	font-size: 1.375rem;
+	font-size: 1.125rem;
 }
 
 @media (max-width: 777px) {
@@ -44,6 +44,6 @@ p, a {
 	}
 
 	p, a {
-		font-size: 1rem;
+		font-size: .75rem;
 	}
 }
