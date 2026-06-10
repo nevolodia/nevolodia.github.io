@@ -22,6 +22,11 @@ function Contact()
 
 				My personal email: <br />
 				me [at] nevolodia [dot] com
+
+				<br />
+				<br />
+
+				xx
 			</p>
 		</div>
 	);
