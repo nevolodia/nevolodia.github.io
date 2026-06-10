@@ -33,6 +33,27 @@ function _main ()
 		setVisited((prev) => prev.has(activePage) ? prev : new Set(prev).add(activePage));
 	}, [activePage]);
 
+	// Warm-up: once the visible page has fully loaded and the browser is
+	// idle, mount ALL pages hidden — their chunks download, their images
+	// fetch, and every later page switch is an instant display toggle.
+	useEffect(() =>
+	{
+		const warm = () =>
+		{
+			setVisited(new Set(["home", "study", "work", "achievements", "gallery", "contact", "thoughts"]));
+			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
+		};
+		const whenIdle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
+		if (document.readyState === "complete")
+		{
+			whenIdle(warm);
+		}
+		else
+		{
+			window.addEventListener("load", () => whenIdle(warm), { once: true });
+		}
+	}, []);
+
 	function updatePageSelection()
 	{
 		const urlParams = new URLSearchParams(window.location.search);

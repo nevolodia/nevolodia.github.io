@@ -55,7 +55,6 @@ function Picture(props: PictureProps) {
 				width={entry.width}
 				height={entry.height}
 				sizes={sizes}
-				loading={eager ? 'eager' : 'lazy'}
 				decoding="async"
 				fetchPriority={eager ? 'high' : 'auto'}
 				onLoad={() => setLoaded(true)}
