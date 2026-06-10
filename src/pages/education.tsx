@@ -16,17 +16,12 @@ function Education()
 				<br />
 				<br />
 
-				Futher:
+				&gt; Research of Reinforcement Learning for Combinatorial Optimization at Dr. Neil Yorke-Smith,
 
 				<br />
 				<br />
 
-				&gt; researching Reinforcement Learning for Combinatorial Optimization at Dr. Neil Yorke-Smith,
-
-				<br />
-				<br />
-
-				&gt; doing research of LLM interpretability under supervision of Google, DeepMind and AI4SE Lab researchers.
+				&gt; Research of LLM interpretability under supervision of Google, DeepMind and AI4SE Lab researchers.
 			</p>
 
 			<Image link={me_in_university} link_big={me_in_university_big}/>
