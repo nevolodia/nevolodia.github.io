@@ -2,7 +2,9 @@
 import GalleryComponent from "../components/GalleryComponent";
 
 // All gallery photos, auto-discovered at build time (Vite's replacement for
-// the old try/require loop), in filename order.
+// the old try/require loop), in filename order. The grid shows the generated
+// small version (public/gallery_sm/, see scripts/gallery-thumbs.mjs); zoom
+// opens the untouched original.
 const galleryImages = import.meta.glob("../resources/images/gallery/*.jpg", {
 	eager: true,
 	query: "?url",
@@ -14,7 +16,10 @@ function Gallery()
 {
 	const images = Object.keys(galleryImages)
 		.sort()
-		.map((key) => galleryImages[key] as string);
+		.map((key) => ({
+			small: `/gallery_sm/${key.split("/").pop()}`,
+			big: galleryImages[key] as string,
+		}));
 
 	return (
 		<div>

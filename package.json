@@ -22,6 +22,7 @@
 		"preview": "vite preview",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
+		"prebuild": "bun run scripts/gallery-thumbs.mjs",
 		"postbuild": "bun run scripts/inline-css.mjs && bun run scripts/prerender-home.mjs"
 	},
 	"devDependencies": {

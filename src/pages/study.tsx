@@ -11,7 +11,7 @@ function Study()
 	return (
 		<div>
 			<p>
-				I am studying Computer Science BSc at Technical University of Delft.
+				BSc Computer Science at Technical University of Delft.
 
 				<br />
 				<br />
