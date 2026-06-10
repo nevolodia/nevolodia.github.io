@@ -16,7 +16,7 @@ function Portfolio()
 				&gt; Few websites back in the day: <a href="https://binatec.eu/" target="_blank">
 					household chemistry webshop
 				</a>, <a href="https://lnkboxing.lv/" target="_blank">
-					Boxing club system
+					boxing club system
 				</a>.
 
 				<br />
