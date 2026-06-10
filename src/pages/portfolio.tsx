@@ -1,3 +1,11 @@
+// My components
+import Image from "../components/Image";
+
+// Resources
+import olymp_big from '../resources/images/olymp.jpg';
+import olymp from '../resources/images/olymp_sm.jpg';
+
+
 function Portfolio()
 {
 	return (
@@ -45,6 +53,7 @@ function Portfolio()
 					https://lemon-ai.org
 				</a>
 
+				<Image link={olymp} link_big={olymp_big}/>
 			</p>
 		</div>
 	);
