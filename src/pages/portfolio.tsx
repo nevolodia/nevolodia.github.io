@@ -34,8 +34,10 @@ function Portfolio()
 				<br />
 				<br />
 
-				&gt; Founder of non-profit developing AI education for students in Latvia and worldwide.
-				<a href="https://lemon-ai.org/" target="_blank">https://lemon-ai.org/</a>
+				&gt; Founder of non-profit developing AI education for students in Latvia and worldwide. <a href="https://lemon-ai.org/"
+					target="_blank">
+					https://lemon-ai.org
+				</a>
 
 			</p>
 		</div>
