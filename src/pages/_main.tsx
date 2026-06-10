@@ -14,7 +14,7 @@ import Link from "../components/Link";
 import '../css/main.css';
 
 // Heavy pages are code-split into separate chunks, loaded on first visit.
-const Achievements = lazy(() => import("./achievements"));
+// const Achievements = lazy(() => import("./achievements"));
 const Thoughts = lazy(() => import("./thoughts"));
 const Gallery = lazy(() => import("./gallery"));
 const UnlistedBrainfuck = lazy(() => import("./unlisted_brainfuck"));
@@ -48,7 +48,7 @@ function _main ()
 		}
 		const warm = () =>
 		{
-			setVisited(new Set(["home", "education", "portfolio", "achievements", "gallery", "contact", "thoughts"]));
+			setVisited(new Set(["home", "education", "portfolio", /*"achievements",*/ "gallery", "contact", "thoughts"]));
 			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
 		};
 		if (document.readyState === "complete")
@@ -74,9 +74,9 @@ function _main ()
 			case "portfolio":
 				setActivePage("portfolio");
 				break;
-			case "achievements":
-				setActivePage("achievements");
-				break;
+			//case "achievements":
+			//	setActivePage("achievements");
+			//	break;
 			case "gallery":
 				setActivePage("gallery");
 				break;
@@ -158,7 +158,7 @@ function _main ()
 							<Link link="/" active={activePage === "home"}>Home</Link>
 							<Link link="/?p=education" active={activePage === "education"}>Education</Link>
 							<Link link="/?p=portfolio" active={activePage === "portfolio"}>Portfolio</Link>
-							<Link link="/?p=achievements" active={activePage === "achievements"}>Achivements</Link>
+							{/* <Link link="/?p=achievements" active={activePage === "achievements"}>Achivements</Link> */}
 							<Link link="/?p=thoughts" active={activePage === "thoughts"}>Thoughts</Link>
 							<Link link="/?p=gallery" active={activePage === "gallery"}>Gallery</Link>
 							<Link link="/?p=contact" active={activePage === "contact"}>Contact</Link>
@@ -182,9 +182,9 @@ function _main ()
 					    on the first render nothing lazy is mounted, so the initial
 					    tree is plain divs — required for clean hydration of the
 					    prerendered home page (snapshots can't encode Suspense). */}
-					<div style={{display: activePage === "achievements" ? "block" : "none"}}>
+					{/* <div style={{display: activePage === "achievements" ? "block" : "none"}}>
 						{visited.has("achievements") && <Suspense fallback={null}><Achievements/></Suspense>}
-					</div>
+					</div> */}
 
 					<div style={{display: activePage === "gallery" ? "block" : "none"}}>
 						{visited.has("gallery") && <Suspense fallback={null}><Gallery/></Suspense>}
