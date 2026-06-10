@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # Runs prebuild (sharp image optimization) then vite build -> build/
+      # vite build -> build/, then postbuild (inline CSS + prerender home)
       - name: Build
         run: bun run build
 
