@@ -52,8 +52,6 @@ function Portfolio()
 				>
 					https://lemon-ai.org
 				</a>
-
-				<Image link={olymp} link_big={olymp_big}/>
 			</p>
 		</div>
 	);
