@@ -12,6 +12,8 @@ function Portfolio()
 				Worked on R&D AI project focused on enhancing the reliability and user experience.
 				June 2025 to Dec 2025.
 
+				<br />
+
 				&gt; Few websites back in the day. An online shop <a href="https://binatec.eu/" target="_blank">
 					https://binatec.eu/
 				</a> for European household chemistry company, and a website <a href="https://lnkboxing.lv/" target="_blank">
