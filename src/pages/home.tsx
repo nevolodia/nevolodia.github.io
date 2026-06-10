@@ -15,9 +15,9 @@ function Home()
 
 				My name is Vladimir, and this is my website.
 
-				<Image name="me.jpg" highFetchPriority={true}/>
-
 				<br/>
+
+				<Image name="me.jpg" highFetchPriority={true}/>
 
 			</p>
 		</div>
