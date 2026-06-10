@@ -22,15 +22,12 @@
 		"preview": "vite preview",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
-		"optimize:images": "bun run scripts/optimize-images.mjs",
-		"prebuild": "bun run optimize:images",
 		"postbuild": "bun run scripts/inline-css.mjs && bun run scripts/prerender-home.mjs"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-react": "^6.0.2",
 		"gh-pages": "^6.3.0",
 		"playwright-core": "^1.60.0",
-		"sharp": "^0.34.5",
 		"vite": "^8.0.16"
 	}
 }

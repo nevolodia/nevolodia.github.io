@@ -2,6 +2,9 @@
 import Link from '../components/Link';
 import Image from "../components/Image";
 
+// Resources
+import me from '../resources/images/me.jpg';
+
 
 function Home()
 {
@@ -18,7 +21,7 @@ function Home()
 				<br/>
 				<br/>
 
-				<Image name="me.jpg" highFetchPriority={true}/>
+				<Image link={me} highFetchPriority={true}/>
 
 			</p>
 		</div>

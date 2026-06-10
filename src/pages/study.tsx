@@ -1,6 +1,10 @@
 // My components
 import Image from "../components/Image";
 
+// Resources
+import me_in_university_big from '../resources/images/tud.jpg';
+import me_in_university from '../resources/images/tud_sm.jpg';
+
 
 function Study()
 {
@@ -25,7 +29,7 @@ function Study()
 				&gt; became Board Member and Project Manager at the Robotic Student Association.
 			</p>
 
-			<Image name="tud_sm.jpg" big="tud.jpg"/>
+			<Image link={me_in_university} link_big={me_in_university_big}/>
 		</div>
 	);
 }

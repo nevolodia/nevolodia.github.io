@@ -102,12 +102,12 @@ try {
 	await page.waitForSelector('.main p', { timeout: 15000 });
 	const rootHtml = await page.evaluate(() => {
 		// The snapshot must equal the app's FIRST render for clean hydration.
-		// Image.tsx renders a plain <picture> pre-mount and only wraps it in
+		// Image.tsx renders a plain <img> pre-mount and only wraps it in
 		// react-medium-image-zoom (random ids, extra nodes) after mount — so
-		// unwrap every zoom wrapper back to its bare <picture> here.
+		// unwrap every zoom wrapper back to its bare <img> here.
 		for (const wrapper of document.querySelectorAll('#root [data-rmiz]')) {
-			const picture = wrapper.querySelector('picture');
-			if (picture) wrapper.replaceWith(picture);
+			const img = wrapper.querySelector('img');
+			if (img) wrapper.replaceWith(img);
 		}
 		return document.getElementById('root').innerHTML;
 	});

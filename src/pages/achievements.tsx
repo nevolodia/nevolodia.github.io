@@ -1,6 +1,12 @@
 // My components
 import Image from "../components/Image";
 
+// Resources
+import brainfuck_x86 from '../resources/images/brfck_x86_image.png';
+import ads from '../resources/images/ads.jpg';
+import rott from '../resources/images/rott.jpg';
+import bunq from '../resources/images/bunq.jpg';
+
 
 function Achievements()
 {
@@ -64,10 +70,10 @@ function Achievements()
 				<br/>
 				<br/>
 
-				<Image name="brfck_x86_image.png"/>
-				<Image name="bunq.jpg"/>
-				<Image name="ads.jpg"/>
-				<Image name="rott.jpg"/>
+				<Image link={brainfuck_x86}/>
+				<Image link={bunq}/>
+				<Image link={ads}/>
+				<Image link={rott}/>
 
 				<br/>
 				<br/>

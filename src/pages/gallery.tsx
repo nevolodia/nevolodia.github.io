@@ -1,20 +1,25 @@
 // My components
 import GalleryComponent from "../components/GalleryComponent";
-import manifest from "../resources/optimized-manifest.json";
+
+// All gallery photos, auto-discovered at build time (Vite's replacement for
+// the old try/require loop), in filename order.
+const galleryImages = import.meta.glob("../resources/images/gallery/*.jpg", {
+	eager: true,
+	query: "?url",
+	import: "default",
+});
 
 
 function Gallery()
 {
-	// Auto-discover gallery images from the optimized manifest (replaces the
-	// old try/require loop over the raw jpgs).
-	const names = Object.keys(manifest)
-		.filter((name) => name.startsWith("gallery/"))
-		.sort();
+	const images = Object.keys(galleryImages)
+		.sort()
+		.map((key) => galleryImages[key] as string);
 
 	return (
 		<div>
 			<GalleryComponent
-				names={names}
+				images={images}
 			/>
 		</div>
 	);
