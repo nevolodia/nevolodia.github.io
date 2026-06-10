@@ -28,14 +28,20 @@ function Portfolio()
 				<br />
 				<br />
 
-				&gt; Lead organizer of the first-ever Latvian Open AI Olympiad; couching national team for IOAI & CEOAI.
-				<a href="https://omi.lv/" target="_blank">https://omi.lv/</a>
+				&gt; Lead organizer of the first-ever Latvian Open AI Olympiad; couching national team for IOAI & CEOAI. <a
+					href="https://omi.lv/"
+					target="_blank"
+				>
+						https://omi.lv/
+					</a>
 
 				<br />
 				<br />
 
-				&gt; Founder of non-profit developing AI education for students in Latvia and worldwide. <a href="https://lemon-ai.org/"
-					target="_blank">
+				&gt; Founder of non-profit developing AI education for students in Latvia and worldwide. <a
+					href="https://lemon-ai.org/"
+					target="_blank"
+				>
 					https://lemon-ai.org
 				</a>
 
