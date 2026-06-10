@@ -8,17 +8,16 @@ function Portfolio()
 				<br />
 				<br />
 
-				&gt; Data Engineer at bunq, leading fintech bank in Europe.
-				Worked on R&D AI project focused on enhancing the reliability and user experience.
-				June 2025 to Dec 2025.
+				&gt; Data Engineer at bunq, leading digital EU bank. R&D AI project. June 2025 to Dec 2025.
 
 				<br />
+				<br />
 
-				&gt; Few websites back in the day. An online shop <a href="https://binatec.eu/" target="_blank">
-					https://binatec.eu/
-				</a> for European household chemistry company, and a website <a href="https://lnkboxing.lv/" target="_blank">
-					https://lnkboxing.lv/
-				</a> for Latvian boxing club.
+				&gt; Few websites back in the day: <a href="https://binatec.eu/" target="_blank">
+					household chemistry webshop
+				</a>, <a href="https://lnkboxing.lv/" target="_blank">
+					Boxing club system
+				</a>.
 
 				<br />
 				<br />
