@@ -21,12 +21,12 @@ function Education()
 				<br />
 				<br />
 
-				&gt; started work on Honours study in Reinforcement Learning for the Vehicle Routing Problem,
+				&gt; researching Reinforcement Learning for Combinatorial Optimization at Dr. Neil Yorke-Smith,
 
 				<br />
 				<br />
 
-				&gt; became Board Member and Project Manager at the Robotic Student Association.
+				&gt; doing research of LLM interpretability under supervision of Google, DeepMind and AI4SE Lab researchers.
 			</p>
 
 			<Image link={me_in_university} link_big={me_in_university_big}/>
