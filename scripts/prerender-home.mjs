@@ -94,6 +94,9 @@ const browser = await chromium.launch({
 });
 try {
 	const page = await browser.newPage();
+	// Tell the app it's being prerendered: the all-pages warm-up must not run
+	// here, the snapshot has to be the initial (home-only) render.
+	await page.addInitScript(() => { window.__PRERENDER__ = true; });
 	await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'networkidle' });
 	// Home content = first <p> inside .main
 	await page.waitForSelector('.main p', { timeout: 15000 });

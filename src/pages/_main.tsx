@@ -33,24 +33,31 @@ function _main ()
 		setVisited((prev) => prev.has(activePage) ? prev : new Set(prev).add(activePage));
 	}, [activePage]);
 
-	// Warm-up: once the visible page has fully loaded and the browser is
-	// idle, mount ALL pages hidden — their chunks download, their images
-	// fetch, and every later page switch is an instant display toggle.
+	// Warm-up: the moment the visible page has fully displayed (= the load
+	// event, when all of its own resources are in), mount ALL pages hidden —
+	// every chunk and every image downloads right away, and every later page
+	// switch is an instant display toggle. Before load, the visible page has
+	// absolute priority; after load, nothing competes with the warm-up.
 	useEffect(() =>
 	{
+		// The build-time prerenderer must snapshot the UNwarmed page (home
+		// only), or the hydrated first render won't match the HTML.
+		if ((window as any).__PRERENDER__)
+		{
+			return;
+		}
 		const warm = () =>
 		{
 			setVisited(new Set(["home", "study", "work", "achievements", "gallery", "contact", "thoughts"]));
 			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
 		};
-		const whenIdle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
 		if (document.readyState === "complete")
 		{
-			whenIdle(warm);
+			warm();
 		}
 		else
 		{
-			window.addEventListener("load", () => whenIdle(warm), { once: true });
+			window.addEventListener("load", warm, { once: true });
 		}
 	}, []);
 

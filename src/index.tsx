@@ -13,19 +13,18 @@ import '@fontsource/roboto/latin-400.css';
 // The two faces above are used ONLY by Thoughts posts, and @font-face alone
 // does not download anything — browsers fetch a font the first time text
 // uses it (which would mean a visible swap on the first Thoughts open).
-// So: once the page has fully loaded and the browser is idle, force-fetch
-// them. They stay off the critical path but are always warm in cache by the
-// time anyone opens Thoughts.
+// So: the moment the page has fully displayed (load event), force-fetch
+// them. They never compete with the visible page, but are warm in cache by
+// the time anyone opens Thoughts.
 function warmThoughtsFonts() {
 	const fetchFonts = () => {
 		document.fonts.load('1em "Abril Fatface"');
 		document.fonts.load('1em Roboto');
 	};
-	const whenIdle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
 	if (document.readyState === 'complete') {
-		whenIdle(fetchFonts);
+		fetchFonts();
 	} else {
-		window.addEventListener('load', () => whenIdle(fetchFonts), { once: true });
+		window.addEventListener('load', fetchFonts, { once: true });
 	}
 }
 warmThoughtsFonts();
