@@ -86,7 +86,12 @@ if (!html.includes(ROOT_DIV)) {
 const server = await serveBuild();
 const port = server.address().port;
 
-const browser = await chromium.launch({ executablePath: findChrome() });
+const browser = await chromium.launch({
+	executablePath: findChrome(),
+	// CI runners (GitHub Actions ubuntu images) restrict Chrome's sandbox;
+	// local runs keep the sandbox on.
+	args: process.env.CI ? ['--no-sandbox'] : [],
+});
 try {
 	const page = await browser.newPage();
 	await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'networkidle' });
