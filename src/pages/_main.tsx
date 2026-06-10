@@ -3,8 +3,8 @@ import React, {useEffect, Suspense, lazy} from 'react';
 
 // Pages (light ones stay in the main bundle)
 import Home from "./home";
-import Study from "./study";
-import Work from './work';
+import Education from "./education";
+import Portfolio from './portfolio';
 import Contact from "./contact";
 
 // My components
@@ -48,7 +48,7 @@ function _main ()
 		}
 		const warm = () =>
 		{
-			setVisited(new Set(["home", "study", "work", "achievements", "gallery", "contact", "thoughts"]));
+			setVisited(new Set(["home", "education", "portfolio", "achievements", "gallery", "contact", "thoughts"]));
 			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
 		};
 		if (document.readyState === "complete")
@@ -68,11 +68,11 @@ function _main ()
 
 		switch (page)
 		{
-			case "study":
-				setActivePage("study");
+			case "education":
+				setActivePage("education");
 				break;
-			case "work":
-				setActivePage("work");
+			case "portfolio":
+				setActivePage("portfolio");
 				break;
 			case "achievements":
 				setActivePage("achievements");
@@ -156,8 +156,8 @@ function _main ()
 					<div className="panel-bar">
 						<div className="menu">
 							<Link link="/" active={activePage === "home"}>Home</Link>
-							<Link link="/?p=study" active={activePage === "study"}>Study</Link>
-							<Link link="/?p=work" active={activePage === "work"}>Work</Link>
+							<Link link="/?p=education" active={activePage === "education"}>Education</Link>
+							<Link link="/?p=portfolio" active={activePage === "portfolio"}>Portfolio</Link>
 							<Link link="/?p=achievements" active={activePage === "achievements"}>Achivements</Link>
 							<Link link="/?p=thoughts" active={activePage === "thoughts"}>Thoughts</Link>
 							<Link link="/?p=gallery" active={activePage === "gallery"}>Gallery</Link>
@@ -170,12 +170,12 @@ function _main ()
 						<Home/>
 					</div>
 
-					<div style={{display: activePage === "study" ? "block" : "none"}}>
-						<Study/>
+					<div style={{display: activePage === "education" ? "block" : "none"}}>
+						<Education/>
 					</div>
 
-					<div style={{display: activePage === "work" ? "block" : "none"}}>
-						<Work/>
+					<div style={{display: activePage === "portfolio" ? "block" : "none"}}>
+						<Portfolio/>
 					</div>
 
 					{/* Suspense sits INSIDE each conditional (not around them):

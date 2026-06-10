@@ -3,10 +3,6 @@ function Contact()
 	return (
 		<div>
 			<p>
-				Hi, happy to see you here!
-
-				<br />
-				<br />
 
 				My github: <br />
 				<a href={"https://github.com/nevolodia"}>
@@ -26,18 +22,6 @@ function Contact()
 
 				My personal email: <br />
 				me [at] nevolodia [dot] com
-
-				<br />
-				<br />
-
-				My official email: <br />
-				work [at] nevolodia [dot] com
-
-				<br />
-				<br />
-
-				My study email: <br />
-				v.k.bickovs [at] student [dot] tudelft [dot] nl
 			</p>
 		</div>
 	);
