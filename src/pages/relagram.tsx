@@ -61,7 +61,7 @@ function Relagram()
 
 			<iframe
 				src="/relagram/relagram-poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-				style={{border: "none", borderRadius: "8px", width: "100%", height: "75vh"}}
+				style={{border: "none", borderRadius: "8px", width: "100%", aspectRatio: "2 / 3"}}
 			/>
 
 			<p>
