@@ -18,6 +18,7 @@ import '../css/main.css';
 const Thoughts = lazy(() => import("./thoughts"));
 const Gallery = lazy(() => import("./gallery"));
 const UnlistedBrainfuck = lazy(() => import("./unlisted_brainfuck"));
+const Relagram = lazy(() => import("./relagram"));
 
 
 function _main ()
@@ -31,6 +32,23 @@ function _main ()
 	useEffect(() =>
 	{
 		setVisited((prev) => prev.has(activePage) ? prev : new Set(prev).add(activePage));
+	}, [activePage]);
+
+	// Unlisted pages should be reachable by their direct URL without being
+	// offered to search engines. Restore normal indexing when navigating away.
+	useEffect(() =>
+	{
+		let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+		if (!robots)
+		{
+			robots = document.createElement("meta");
+			robots.name = "robots";
+			document.head.appendChild(robots);
+		}
+
+		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "relagram";
+		robots.content = isUnlisted ? "noindex, nofollow, noarchive" : "index, follow";
+		document.title = activePage === "relagram" ? "relagram" : "my website";
 	}, [activePage]);
 
 	// Warm-up: the moment the visible page has fully displayed (= the load
@@ -50,6 +68,7 @@ function _main ()
 		{
 			setVisited(new Set(["home", "education", "portfolio", /*"achievements",*/ "gallery", "contact", "thoughts"]));
 			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
+			import("./relagram"); // unlisted: cache the chunk only
 		};
 		if (document.readyState === "complete")
 		{
@@ -88,6 +107,9 @@ function _main ()
 				break;
 			case "unlisted_brainfuck":
 				setActivePage("unlisted_brainfuck");
+				break;
+			case "relagram":
+				setActivePage("relagram");
 				break;
 			default:
 				setActivePage("home");
@@ -200,8 +222,14 @@ function _main ()
 
 					{
 						activePage === "unlisted_brainfuck"
-						? <Suspense fallback={null}><UnlistedBrainfuck/></Suspense>
-						: null
+							? <Suspense fallback={null}><UnlistedBrainfuck/></Suspense>
+							: null
+					}
+
+					{
+						activePage === "relagram"
+							? <Suspense fallback={null}><Relagram/></Suspense>
+							: null
 					}
 					</div>
 				</div>

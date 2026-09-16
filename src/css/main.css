@@ -111,6 +111,48 @@
 	color: #ffaf00;
 }
 
+.relagram-page {
+	text-align: left;
+}
+
+.relagram-heading {
+	position: relative;
+	width: fit-content;
+	margin: 3rem auto;
+	padding: .85rem 1rem;
+
+	border-top: 1px solid rgba(189, 189, 189, 0.55);
+	border-bottom: 1px solid rgba(189, 189, 189, 0.55);
+
+	font-size: clamp(2.1rem, 10vw, 4.25rem);
+	font-weight: 400;
+	letter-spacing: .12em;
+	line-height: 1;
+	text-indent: .12em;
+}
+
+.relagram-heading::before,
+.relagram-heading::after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+}
+
+.relagram-heading::before {
+	top: -1px;
+	left: -1px;
+	border-top: 2px solid #ffaf00;
+	border-left: 2px solid #ffaf00;
+}
+
+.relagram-heading::after {
+	right: -1px;
+	bottom: -1px;
+	border-right: 2px solid #ffaf00;
+	border-bottom: 2px solid #ffaf00;
+}
+
 /* The bar below the name: same height as the concept panel's top bar,
    spanning the full panel width, holding the (unchanged) page links. */
 .panel-bar {

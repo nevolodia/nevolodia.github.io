@@ -17,6 +17,22 @@
 
 		<title>my website</title>
 		<meta name="description" content="My personal website with some interesting info and posts"/>
+		<script>
+			// Unlisted pages are intentionally absent from navigation and ask search
+			// engines not to index them before the React application loads.
+			(function () {
+				const page = new URLSearchParams(window.location.search).get('p');
+				if (page === 'unlisted_brainfuck' || page === 'relagram') {
+					const robots = document.createElement('meta');
+					robots.name = 'robots';
+					robots.content = 'noindex, nofollow, noarchive';
+					document.head.appendChild(robots);
+				}
+				if (page === 'relagram') {
+					document.title = 'relagram';
+				}
+			})();
+		</script>
 
 
 		<!--
