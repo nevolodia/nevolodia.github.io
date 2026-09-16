@@ -46,9 +46,9 @@ function _main ()
 			document.head.appendChild(robots);
 		}
 
-		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "relagram";
+		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "unlisted_relagram";
 		robots.content = isUnlisted ? "noindex, nofollow, noarchive" : "index, follow";
-		document.title = activePage === "relagram" ? "relagram" : "my website";
+		document.title = activePage === "unlisted_relagram" ? "relagram" : "my website";
 	}, [activePage]);
 
 	// Warm-up: the moment the visible page has fully displayed (= the load
@@ -108,8 +108,8 @@ function _main ()
 			case "unlisted_brainfuck":
 				setActivePage("unlisted_brainfuck");
 				break;
-			case "relagram":
-				setActivePage("relagram");
+			case "unlisted_relagram":
+				setActivePage("unlisted_relagram");
 				break;
 			default:
 				setActivePage("home");
@@ -227,7 +227,7 @@ function _main ()
 					}
 
 					{
-						activePage === "relagram"
+						activePage === "unlisted_relagram"
 							? <Suspense fallback={null}><Relagram/></Suspense>
 							: null
 					}
