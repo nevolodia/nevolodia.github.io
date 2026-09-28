@@ -19,6 +19,7 @@ const Thoughts = lazy(() => import("./thoughts"));
 const Gallery = lazy(() => import("./gallery"));
 const UnlistedBrainfuck = lazy(() => import("./unlisted_brainfuck"));
 const Relagram = lazy(() => import("./relagram"));
+const VideoSelfAd = lazy(() => import("./video_self_ad"));
 
 
 function _main ()
@@ -46,9 +47,9 @@ function _main ()
 			document.head.appendChild(robots);
 		}
 
-		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "unlisted_relagram";
+		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "unlisted_relagram" || activePage === "video_self_ad";
 		robots.content = isUnlisted ? "noindex, nofollow, noarchive" : "index, follow";
-		document.title = activePage === "unlisted_relagram" ? "relagram" : "my website";
+		document.title = activePage === "video_self_ad" ? "video_self_ad" : activePage === "unlisted_relagram" ? "relagram" : "my website";
 	}, [activePage]);
 
 	// Warm-up: the moment the visible page has fully displayed (= the load
@@ -110,6 +111,10 @@ function _main ()
 				break;
 			case "unlisted_relagram":
 				setActivePage("unlisted_relagram");
+				break;
+			case "video_self_ad":
+			case "unlisted_video_self_ad":
+				setActivePage("video_self_ad");
 				break;
 			default:
 				setActivePage("home");
@@ -229,6 +234,12 @@ function _main ()
 					{
 						activePage === "unlisted_relagram"
 							? <Suspense fallback={null}><Relagram/></Suspense>
+							: null
+					}
+
+					{
+						activePage === "video_self_ad"
+							? <Suspense fallback={null}><VideoSelfAd/></Suspense>
 							: null
 					}
 					</div>
