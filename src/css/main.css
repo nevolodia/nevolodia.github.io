@@ -91,6 +91,8 @@
 .main {
 	box-sizing: border-box;
 	padding: 1.25rem 1.125rem 2rem;
+	font-family: 'Inter Tight', Arial, sans-serif;
+	text-align: left;
 }
 
 @media (min-width: 1050px) {

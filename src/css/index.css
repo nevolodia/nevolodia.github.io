@@ -22,11 +22,17 @@ body {
 /* Typography */
 
 p {
-	font-family: 'Roboto Mono', 'Roboto Mono Fallback', monospace, 'Courier New';
+	font-family: 'Inter Tight', Arial, sans-serif;
+	letter-spacing: 0.01em;
 }
 
 h2, a {
 	font-family: 'Space Mono', 'Space Mono Fallback', monospace, 'Courier New';
+}
+
+.main a {
+	font-family: inherit;
+	font-size: inherit;
 }
 
 h2 {
@@ -34,8 +40,14 @@ h2 {
 	margin: 1.5rem 0;
 }
 
-p, a {
+.main, p, a {
 	font-size: 1.125rem;
+}
+
+@media (min-width: 1050px) {
+	.main, p {
+		font-size: 1.267rem;
+	}
 }
 
 @media (max-width: 777px) {
@@ -43,7 +55,7 @@ p, a {
 		font-size: 1.5rem;
 	}
 
-	p, a {
+	a {
 		font-size: .75rem;
 	}
 }

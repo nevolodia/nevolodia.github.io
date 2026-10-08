@@ -1,4 +1,11 @@
 {
-  "title": "Something here.",
-  "content": "I have not written anything here yet. Posts will be added as soon as I will stop being lazy and will start writing."
+  "title": "RELAGRAM",
+  "content": "I have not written anything here yet. Posts will be added as soon as I will stop being lazy and will start writing.",
+  "video": "/thoughts/relagram.mp4",
+  "links": [
+    {
+      "label": "Read the paper on OpenReview",
+      "href": "https://openreview.net/forum?id=bb4DbQgvgM"
+    }
+  ]
 }

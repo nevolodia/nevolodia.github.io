@@ -17,10 +17,12 @@ type Post =
     number: string
     title: string
     content: string
+    video?: string
+    links?: { label: string; href: string }[]
 };
 
 const POSTS: Post[] = [
-    { number: "001", title: post001.title, content: post001.content },
+    { number: "001", ...post001 },
 ].sort((a, b) => Number(a.number) - Number(b.number));
 
 function normalizeThoughtId(id: string): string
@@ -53,6 +55,17 @@ function renderThoughtDetail(post: Post): React.ReactNode
                             </p>
                     )
                 }
+                {post.video && (
+                    <video className="thought-video" controls playsInline preload="metadata" aria-label={`${post.title} video`}>
+                        <source src={post.video} type="video/mp4" />
+                        <a href={post.video}>Download the video</a>
+                    </video>
+                )}
+                {post.links?.map((link) => (
+                    <p key={link.href} className="thought-text">
+                        <a href={link.href}>{link.label}</a>
+                    </p>
+                ))}
             </div>
         </div>
     );
