@@ -19,6 +19,11 @@ body {
 	background-color: black;
 }
 
+::selection {
+	color: #000000;
+	background-color: #ffc247;
+}
+
 /* Typography */
 
 p {

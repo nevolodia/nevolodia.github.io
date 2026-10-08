@@ -13,6 +13,11 @@
     text-align: left;
 }
 
+.thought-page
+{
+    margin: 1em 0;
+}
+
 .thought-heading
 {
     font-family: 'Abril Fatface', serif !important;
@@ -36,7 +41,7 @@
     }
 }
 
-.thought-text
+.thought-content p
 {
     font-family: 'Roboto', sans-serif !important;
     font-size: 1.125rem;
@@ -44,18 +49,40 @@
 
 .thought-video
 {
+    --media-border-radius: 12px;
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 16 / 9;
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     box-shadow: 0 6.68px 40.08px rgba(255, 255, 255, 0.2505);
 }
 
+.thought-video .media-mute-button,
+.thought-video .media-volume-popover,
+.thought-video .media-settings-menu-trigger,
+.thought-video .media-cast-button,
+.thought-video .media-airplay-button,
+.thought-video .media-pip-button
+{
+    display: none;
+}
+
+@container media-root (min-width: 42rem)
+{
+    .thought-video .video-time-slider-group
+    {
+        /* Tighten each end of the timeline group without scaling the controls. */
+        padding-inline-start: calc(var(--media-spacing) * 1.5 - 6px);
+        padding-inline-end: calc(var(--media-spacing) * 1.5 - 3px);
+    }
+}
+
 @media (min-width: 1050px)
 {
-    .thought-text
+    .thought-content p
     {
         font-size: 1.4rem;
     }

@@ -22,14 +22,15 @@
 			// engines not to index them before the React application loads.
 			(function () {
 				const page = new URLSearchParams(window.location.search).get('p');
-				if (page === 'unlisted_brainfuck' || page === 'unlisted_relagram') {
+				if (page === 'unlisted_relagram') {
+					window.location.replace('/?p=thoughts&thought=001');
+					return;
+				}
+				if (page === 'unlisted_brainfuck') {
 					const robots = document.createElement('meta');
 					robots.name = 'robots';
 					robots.content = 'noindex, nofollow, noarchive';
 					document.head.appendChild(robots);
-				}
-				if (page === 'unlisted_relagram') {
-					document.title = 'relagram';
 				}
 			})();
 		</script>

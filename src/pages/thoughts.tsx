@@ -4,29 +4,18 @@ import { useEffect, useState } from "react";
 // My components
 import Link from "../components/Link";
 
-// Posts (explicit typed import map — add a new post by importing its JSON
-// and appending an entry below; keeps everything build-time and type-checked)
-import post001 from "../resources/thoughts/001.json";
-import post002 from "../resources/thoughts/002.json";
+// Each article owns its metadata and complete body markup.
+// Add articles by importing them and including them in POSTS.
+import post001 from "../resources/thoughts/001";
+import post002 from "../resources/thoughts/002";
+import type { Post } from "../resources/thoughts/types";
 
 // Styles
 import '../css/thoughts.css';
 
 
-type Post =
-{
-    number: string
-    title: string
-    intro?: string
-    content: string
-    video?: string
-    links?: { label: string; href: string }[]
-};
-
-const POSTS: Post[] = [
-    { number: "001", ...post001 },
-    { number: "002", ...post002 },
-].sort((a, b) => Number(a.number) - Number(b.number));
+const POSTS: Post[] = [post001, post002]
+    .sort((a, b) => Number(a.number) - Number(b.number));
 
 function normalizeThoughtId(id: string): string
 {
@@ -50,26 +39,7 @@ function renderThoughtDetail(post: Post): React.ReactNode
                 { post.title }
             </h2>
             <div className="thought-content">
-                {post.intro && <p className="thought-text">{post.intro}</p>}
-                {post.video && (
-                    <video className="thought-video" controls playsInline preload="metadata" aria-label={`${post.title} video`}>
-                        <source src={post.video} type="video/mp4" />
-                        <a href={post.video}>Download the video</a>
-                    </video>
-                )}
-                {
-                    post.content.split('\n').map(
-                        (line: string, i: number) =>
-                            <p key={i} className="thought-text">
-                                { line }
-                            </p>
-                    )
-                }
-                {post.links?.map((link) => (
-                    <p key={link.href} className="thought-text">
-                        <a href={link.href}>{link.label}</a>
-                    </p>
-                ))}
+                {post.content}
             </div>
         </div>
     );
@@ -122,10 +92,8 @@ function Thoughts()
     }
 
 	return (
-		<div>
-            <p>
-                {content}
-            </p>
+		<div className="thought-page">
+            {content}
 		</div>
 	);
 }

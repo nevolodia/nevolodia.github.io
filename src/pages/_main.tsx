@@ -18,7 +18,6 @@ import '../css/main.css';
 const Thoughts = lazy(() => import("./thoughts"));
 const Gallery = lazy(() => import("./gallery"));
 const UnlistedBrainfuck = lazy(() => import("./unlisted_brainfuck"));
-const Relagram = lazy(() => import("./relagram"));
 const VideoSelfAd = lazy(() => import("./video_self_ad"));
 
 
@@ -47,9 +46,9 @@ function _main ()
 			document.head.appendChild(robots);
 		}
 
-		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "unlisted_relagram" || activePage === "video_self_ad";
+		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "video_self_ad";
 		robots.content = isUnlisted ? "noindex, nofollow, noarchive" : "index, follow";
-		document.title = activePage === "video_self_ad" ? "video_self_ad" : activePage === "unlisted_relagram" ? "relagram" : "my website";
+		document.title = activePage === "video_self_ad" ? "video_self_ad" : "my website";
 	}, [activePage]);
 
 	// Warm-up: the moment the visible page has fully displayed (= the load
@@ -69,7 +68,6 @@ function _main ()
 		{
 			setVisited(new Set(["home", "education", "portfolio", /*"achievements",*/ "gallery", "contact", "thoughts"]));
 			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
-			import("./relagram"); // unlisted: cache the chunk only
 		};
 		if (document.readyState === "complete")
 		{
@@ -110,8 +108,8 @@ function _main ()
 				setActivePage("unlisted_brainfuck");
 				break;
 			case "unlisted_relagram":
-				setActivePage("unlisted_relagram");
-				break;
+				window.location.replace('/?p=thoughts&thought=001');
+				return;
 			case "video_self_ad":
 			case "unlisted_video_self_ad":
 				setActivePage("video_self_ad");
@@ -228,12 +226,6 @@ function _main ()
 					{
 						activePage === "unlisted_brainfuck"
 							? <Suspense fallback={null}><UnlistedBrainfuck/></Suspense>
-							: null
-					}
-
-					{
-						activePage === "unlisted_relagram"
-							? <Suspense fallback={null}><Relagram/></Suspense>
 							: null
 					}
 
