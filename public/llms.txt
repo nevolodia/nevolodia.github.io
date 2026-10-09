@@ -1,0 +1,27 @@
+# Vladimir Kirill Bickov
+
+- Alternative name (often used in Latvian sources): Vladimirs Kirils Bickovs
+
+- Computer Science undergrad at TU Delft
+- Works on Machine Learning and Combinatorial Optimization research,
+- During his bachelor, published paper at prestigious NeurIPS workshop MLxOR,
+- Founder and lead organizer of first-in-history Latvian Open AI Olympiad,
+- Latvia's IOAI team leader (under his mentorship, Latvian team won Silver and Bronze).
+
+Official personal website: https://nevolodia.com/.
+
+## Research
+
+- [RELAGRAM](https://nevolodia.com/?p=thoughts&thought=001): Recursive Latent Graph Model for the Capacitated Vehicle Routing Problem. Explores latent recursion for neural routing with a 0.53M-parameter model. The author's article reports acceptance at the NeurIPS MLxOR workshop and includes the abstract, video, and poster.
+- [Paper on OpenReview](https://openreview.net/forum?id=bb4DbQgvgM): Linked publication record for RELAGRAM.
+
+## Education and engineering
+
+- [Education](https://nevolodia.com/?p=education): BSc Computer Science studies at Delft University of Technology; GPA 8.9/10; exchange at the University of Illinois Urbana-Champaign. Research supervised by Dr. Neil Yorke-Smith, plus an LLM interpretability research and software project supervised by researchers from Google, DeepMind, and AI4SE Lab.
+- [Portfolio](https://nevolodia.com/?p=portfolio): Data Engineer at bunq on an AI R&D project, June–December 2025; website development for Binatec and LNK Boxing; AI Olympiad and nonprofit leadership.
+
+## AI education leadership
+
+- [Latvian AI Olympiad](https://omi.lv/): Vladimir led the organization of Latvia's first AI Olympiad.
+- [Latvia's IOAI 2026 results](https://omi.lv/won-2026/): He led Latvia's participation; Latvian students earned one silver and one bronze medal at the International Olympiad in Artificial Intelligence.
+- [Lemon AI](https://lemon-ai.org/): Nonprofit founded by Vladimir to advance AI education for students in Latvia and internationally.

@@ -8,7 +8,7 @@ const post: Post = {
     content: (
         <>
             <p>
-                Accepted at NeurIPS MLxOR, my first academical work studies new "fancy" ML architecture for Graph Combinatorial Optimizaiton.
+                Accepted at NeurIPS MLxOR, my first academic work studies the application of latent recursion, a new “fancy” ML architecture, to Graph Combinatorial Optimization.
             </p>
             
             <p>
