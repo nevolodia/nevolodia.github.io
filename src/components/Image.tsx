@@ -5,8 +5,8 @@ import  '../css/image.css';
 
 function Image(props: { link: string, link_big?: string, highFetchPriority?: boolean }) {
 	// The zoom wrapper attaches only after mount: react-medium-image-zoom
-	// renders random ids, so its markup can never match the prerendered home
-	// snapshot (scripts/prerender-home.mjs). First render = plain <img>
+	// renders random ids, so its mounted markup cannot be prerendered.
+	// First render = plain <img> in both static HTML and the browser
 	// everywhere -> clean hydration; Zoom wraps it a tick later.
 	const [interactive, setInteractive] = useState(false);
 	useEffect(() => setInteractive(true), []);
@@ -22,6 +22,7 @@ function Image(props: { link: string, link_big?: string, highFetchPriority?: boo
 
 	return (
 		<Zoom
+			wrapElement="span"
 			zoomImg={{
 				src: props.link_big ? props.link_big : props.link,
 			}}

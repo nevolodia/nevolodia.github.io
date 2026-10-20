@@ -10,6 +10,8 @@
 
 # production
 /build
+/.ssg
+/tests/.generated
 
 # misc
 .DS_Store

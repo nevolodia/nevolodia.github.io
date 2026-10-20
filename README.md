@@ -1,3 +1,9 @@
+## Static pages
+
+- `bun run start`
+- `bun run build`
+- `bun run preview`
+
 ## todo
 
 1. Load images last (when everything else is loaded / document is rendered)

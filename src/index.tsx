@@ -1,50 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import _main from './pages/_main';
+import React, { type ComponentType } from "react";
+import ReactDOM, { type HydrationOptions } from "react-dom/client";
+import Main from "./pages/_main";
+import { canonicalHref, getRoute, LEGACY_PAGES } from "./route-urls";
+import { seedRoute } from "./routes";
+import "@fontsource/abril-fatface/latin-400.css";
+import "@fontsource/roboto/latin-400.css";
+import "./css/background-animation.css";
+import "./css/index.css";
 
-// Critical fonts (Inter Tight 400 body face + Space Mono 400 headline/nav) are
-// self-hosted in public/fonts/, PRELOADED, and declared via an inline <style>
-// in index.html. They are intentionally NOT imported here (the bundled css would race
-// the preloaded declarations). Non-critical fonts stay on fontsource.
-import '@fontsource/abril-fatface/latin-400.css';
-import '@fontsource/roboto/latin-400.css';
 
-// The two faces above are used ONLY by Thoughts posts, and @font-face alone
-// does not download anything — browsers fetch a font the first time text
-// uses it (which would mean a visible swap on the first Thoughts open).
-// So: the moment the page has fully displayed (load event), force-fetch
-// them. They never compete with the visible page, but are warm in cache by
-// the time anyone opens Thoughts.
-function warmThoughtsFonts() {
-	const fetchFonts = () => {
-		document.fonts.load('1em "Abril Fatface"');
-		document.fonts.load('1em Roboto');
-	};
-	if (document.readyState === 'complete') {
-		fetchFonts();
-	} else {
-		window.addEventListener('load', fetchFonts, { once: true });
+export function start(Page: ComponentType, options?: HydrationOptions)
+{
+	const target = canonicalHref(window.location.href, LEGACY_PAGES);
+	const current = window.location.pathname + window.location.search + window.location.hash;
+
+	if (target !== current)
+	{
+		window.location.replace(target);
+		return;
 	}
-}
-warmThoughtsFonts();
 
-// Styles
-import './css/background-animation.css';
-import './css/index.css';
+	const route = getRoute(window.location.pathname);
+	seedRoute(route, Page);
 
+	const container = document.getElementById("root")!;
+	const app = (
+		<React.StrictMode>
+			<Main initialRoute={route} initialPage={Page} />
+		</React.StrictMode>
+	);
 
-const container = document.getElementById('root') as HTMLElement;
-const app = (
-	<React.StrictMode>
-		<_main />
-	</React.StrictMode>
-);
+	if (container.hasChildNodes())
+	{
+		return ReactDOM.hydrateRoot(container, app, options);
+	}
 
-// The production build prerenders the home page into #root (see
-// scripts/prerender-home.mjs): hydrate the existing markup instead of
-// rebuilding it. In dev (empty #root) render normally.
-if (container.hasChildNodes()) {
-	ReactDOM.hydrateRoot(container, app);
-} else {
-	ReactDOM.createRoot(container).render(app);
+	const root = ReactDOM.createRoot(container);
+	root.render(app);
+	return root;
 }

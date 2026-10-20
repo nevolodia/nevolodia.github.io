@@ -188,6 +188,20 @@
     box-shadow: 0 6.68px 40.08px rgba(255, 255, 255, 0.2505);
 }
 
+/* Native controls work before JavaScript enhances the existing media nodes. */
+.native-player.video-skin > :not(video),
+.native-player.audio-skin .audio-controls,
+.native-player.audio-skin .thought-ambient-controls
+{
+    display: none;
+}
+
+.native-player.audio-skin audio[controls]
+{
+    display: block;
+    width: 100%;
+}
+
 .thought-video .media-mute-button,
 .thought-video .media-volume-popover,
 .thought-video .media-settings-menu-trigger,

@@ -1,170 +1,253 @@
-// Libraries
-import React, {useEffect, Suspense, lazy} from 'react';
-
-// Pages (light ones stay in the main bundle)
-import Home from "./home";
-import Education from "./education";
-import Portfolio from './portfolio';
-import Contact from "./contact";
-
-// My components
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { ComponentType, MouseEvent } from "react";
 import Link from "../components/Link";
-
-// Css
-import '../css/main.css';
-
-// Heavy pages are code-split into separate chunks, loaded on first visit.
-// const Achievements = lazy(() => import("./achievements"));
-const Thoughts = lazy(() => import("./thoughts"));
-const Gallery = lazy(() => import("./gallery"));
-const UnlistedBrainfuck = lazy(() => import("./unlisted_brainfuck"));
-const VideoSelfAd = lazy(() => import("./video_self_ad"));
+import { NavigationContext, PageActiveContext } from "../navigation";
+import { getRoute, MENU, NOT_FOUND, ROUTES, type Route } from "../route-urls";
+import { loadRoute } from "../routes";
+import { updateMetadata } from "../metadata";
+import "../css/main.css";
 
 
-function _main ()
+type CachedPage = { route: Route; Page: ComponentType };
+type Position = [number, number];
+type Selection = { route: Route; href: string; position?: Position; initial?: boolean };
+
+const PageView = memo(function PageView({ route, Page, active }: CachedPage & { active: boolean })
 {
-	const [activePage, setActivePage] = React.useState("home");
+	return (
+		<div data-page={route.id} style={{ display: active ? "block" : "none" }}>
+			<PageActiveContext.Provider value={active}>
+				<Page />
+			</PageActiveContext.Provider>
+		</div>
+	);
+});
 
-	// Pages visited so far: a lazy page's chunk is fetched on first visit and
-	// the page stays mounted afterwards (so switching back is instant).
-	const [visited, setVisited] = React.useState<Set<string>>(() => new Set(["home"]));
+let entrySequence = 0;
+const entryKey = () => `${Date.now()}-${++entrySequence}`;
 
-	useEffect(() =>
+function Main({ initialRoute, initialPage }: { initialRoute: Route; initialPage: ComponentType })
+{
+	const [selection, setSelection] = useState<Selection>({ route: initialRoute, href: initialRoute.path, initial: true });
+	const [pages, setPages] = useState<CachedPage[]>([{ route: initialRoute, Page: initialPage }]);
+	const cached = useRef(new Set([initialRoute.id]));
+	const mounted = useRef(false);
+	const requestId = useRef(0);
+	const currentEntry = useRef("");
+	const positions = useRef(new Map<string, Position>());
+
+	const prepareRoute = useCallback(async (route: Route, preparedPage?: ComponentType) =>
 	{
-		setVisited((prev) => prev.has(activePage) ? prev : new Set(prev).add(activePage));
-	}, [activePage]);
-
-	// Unlisted pages should be reachable by their direct URL without being
-	// offered to search engines. Restore normal indexing when navigating away.
-	useEffect(() =>
-	{
-		let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
-		if (!robots)
-		{
-			robots = document.createElement("meta");
-			robots.name = "robots";
-			document.head.appendChild(robots);
-		}
-
-		const isUnlisted = activePage === "unlisted_brainfuck" || activePage === "video_self_ad";
-		robots.content = isUnlisted ? "noindex, nofollow, noarchive" : "index, follow";
-		document.title = activePage === "video_self_ad" ? "video_self_ad" : "my website";
-	}, [activePage]);
-
-	// Warm-up: the moment the visible page has fully displayed (= the load
-	// event, when all of its own resources are in), mount ALL pages hidden —
-	// every chunk and every image downloads right away, and every later page
-	// switch is an instant display toggle. Before load, the visible page has
-	// absolute priority; after load, nothing competes with the warm-up.
-	useEffect(() =>
-	{
-		// The build-time prerenderer must snapshot the UNwarmed page (home
-		// only), or the hydrated first render won't match the HTML.
-		if ((window as any).__PRERENDER__)
+		if (cached.current.has(route.id))
 		{
 			return;
 		}
-		const warm = () =>
+
+		const Page = preparedPage || (await loadRoute(route)).Page;
+		if (!mounted.current || cached.current.has(route.id))
 		{
-			setVisited(new Set(["home", "education", "portfolio", /*"achievements",*/ "gallery", "contact", "thoughts"]));
-			import("./unlisted_brainfuck"); // unlisted: cache the chunk only
-		};
-		if (document.readyState === "complete")
-		{
-			warm();
+			return;
 		}
-		else
-		{
-			window.addEventListener("load", warm, { once: true });
-		}
+
+		cached.current.add(route.id);
+		setPages(previous => [...previous, { route, Page }]);
 	}, []);
 
-	function updatePageSelection()
+	const show = useCallback((url: URL, historyNavigation = false) =>
 	{
-		const urlParams = new URLSearchParams(window.location.search);
-		const page = urlParams.get('p');
+		const request = ++requestId.current;
+		const route = getRoute(url.pathname);
+		const href = url.pathname + url.search + url.hash;
 
-		switch (page)
+		const commit = () =>
 		{
-			case "education":
-				setActivePage("education");
-				break;
-			case "portfolio":
-				setActivePage("portfolio");
-				break;
-			//case "achievements":
-			//	setActivePage("achievements");
-			//	break;
-			case "gallery":
-				setActivePage("gallery");
-				break;
-			case "contact":
-				setActivePage("contact");
-				break;
-			case "thoughts":
-				setActivePage("thoughts");
-				break;
-			case "unlisted_brainfuck":
-				setActivePage("unlisted_brainfuck");
-				break;
-			case "unlisted_relagram":
-				window.location.replace('/?p=thoughts&thought=001');
+			if (!mounted.current || requestId.current !== request)
+			{
 				return;
-			case "video_self_ad":
-			case "unlisted_video_self_ad":
-				setActivePage("video_self_ad");
-				break;
-			default:
-				setActivePage("home");
-		}
-	}
+			}
 
-	// Update the page selection when the component mounts
-	useEffect(() =>
-	{
-		updatePageSelection();
-	}, []);
+			positions.current.set(currentEntry.current, [window.scrollX, window.scrollY]);
+			let position: Position | undefined;
 
+			if (historyNavigation)
+			{
+				currentEntry.current = window.history.state?.siteEntry || entryKey();
+				position = positions.current.get(currentEntry.current);
 
-	// Update the page selection when the URL changes
-	useEffect(() =>
-	{
-		updatePageSelection();
-		const handlePopState = () => {
-			updatePageSelection();
+				if (!window.history.state?.siteEntry)
+				{
+					window.history.replaceState({ ...window.history.state, siteEntry: currentEntry.current }, "");
+				}
+			}
+			else if (href !== window.location.pathname + window.location.search + window.location.hash)
+			{
+				currentEntry.current = entryKey();
+				window.history.pushState({ siteEntry: currentEntry.current }, "", href);
+			}
+
+			setSelection({ route, href, position });
 		};
 
-		window.addEventListener('popstate', handlePopState);
+		// Cached pages switch immediately, without waiting for a Promise.
+		if (cached.current.has(route.id))
+		{
+			commit();
+			return;
+		}
+
+		prepareRoute(route).then(commit).catch(error =>
+		{
+			console.error("Page preparation failed; opening its static document.", error);
+			if (requestId.current === request)
+			{
+				window.location.assign(url.href);
+			}
+		});
+	}, [prepareRoute]);
+
+	useLayoutEffect(() =>
+	{
+		mounted.current = true;
+		currentEntry.current = window.history.state?.siteEntry || entryKey();
+		window.history.replaceState({ ...window.history.state, siteEntry: currentEntry.current }, "");
+
+		const previousRestoration = window.history.scrollRestoration;
+		window.history.scrollRestoration = "manual";
+
+		const onPopState = () => show(new URL(window.location.href), true);
+		window.addEventListener("popstate", onPopState);
 
 		return () =>
 		{
-			window.removeEventListener('popstate', handlePopState);
+			mounted.current = false;
+			++requestId.current;
+			window.history.scrollRestoration = previousRestoration;
+			window.removeEventListener("popstate", onPopState);
 		};
-	}, []);
+	}, [show]);
 
-	// eslint-disable-next-line no-restricted-globals
-	const originalPushState = history.pushState;
-	// eslint-disable-next-line no-restricted-globals
-	const originalReplaceState = history.replaceState;
-
-	// eslint-disable-next-line no-restricted-globals
-	history.pushState = function (state: any, title: string, url?: string | URL | null)
+	useLayoutEffect(() =>
 	{
-		// eslint-disable-next-line no-restricted-globals
-		originalPushState.call(history, state, title, url);
-		updatePageSelection();
-	};
+		updateMetadata(selection.route);
+		const url = new URL(selection.initial ? window.location.href : selection.href, window.location.origin);
 
-	// eslint-disable-next-line no-restricted-globals
-	history.replaceState = function (state: any, title: string, url?: string | URL | null)
+		if (selection.position)
+		{
+			window.scrollTo(...selection.position);
+		}
+		else if (url.hash)
+		{
+			try
+			{
+				const id = decodeURIComponent(url.hash.slice(1));
+				const page = document.querySelector(`[data-page="${selection.route.id}"]`);
+				page?.querySelectorAll("[id]").forEach(element =>
+				{
+					if (element.id === id)
+					{
+						element.scrollIntoView();
+					}
+				});
+			}
+			catch
+			{
+				// Ignore malformed URL fragments.
+			}
+		}
+		else if (!selection.initial)
+		{
+			window.scrollTo(0, 0);
+		}
+	}, [selection]);
+
+	useEffect(() =>
 	{
-		// eslint-disable-next-line no-restricted-globals
-		originalReplaceState.call(history, state, title, url);
-		updatePageSelection();
+		let cancelled = false;
+
+		const warm = async () =>
+		{
+			Promise.allSettled([document.fonts.load('1em "Abril Fatface"'), document.fonts.load("1em Roboto")]);
+
+			// Download public pages together, then mount one per task.
+			const requests = ROUTES.filter(route => !route.unlisted).map(route => ({
+				route,
+				loaded: loadRoute(route).catch(error =>
+				{
+					console.warn(`Could not preload ${route.path}`, error);
+					return null;
+				}),
+			}));
+
+			for (const { route, loaded } of requests)
+			{
+				const page = await loaded;
+				if (cancelled)
+				{
+					return;
+				}
+
+				if (page)
+				{
+					await prepareRoute(route, page.Page);
+				}
+
+				await new Promise(resolve => window.setTimeout(resolve, 0));
+			}
+		};
+
+		const start = () => { warm(); };
+		if (document.readyState === "complete")
+		{
+			start();
+		}
+		else
+		{
+			window.addEventListener("load", start, { once: true });
+		}
+
+		return () =>
+		{
+			cancelled = true;
+			window.removeEventListener("load", start);
+		};
+	}, [prepareRoute]);
+
+	const navigation = useMemo(() => ({
+		navigate: show,
+		prepare: (url: URL) =>
+		{
+			const route = getRoute(url.pathname);
+			if (url.origin === window.location.origin && route !== NOT_FOUND)
+			{
+				prepareRoute(route).catch(error => console.warn(`Could not preload ${route.path}`, error));
+			}
+		},
+	}), [show, prepareRoute]);
+
+	const handleAnchor = (event: MouseEvent<HTMLDivElement>) =>
+	{
+		if (event.defaultPrevented || event.button !== 0
+			|| event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+		{
+			return;
+		}
+
+		const anchor = (event.target as Element).closest("a");
+		if (!anchor || anchor.target || anchor.hasAttribute("download"))
+		{
+			return;
+		}
+
+		const href = anchor.getAttribute("href");
+		if (href?.startsWith("#"))
+		{
+			event.preventDefault();
+			show(new URL(href, window.location.href));
+		}
 	};
 
 	return (
-		<>
+		<NavigationContext.Provider value={navigation}>
 			<div className="bg-grid">
 				<div className="bg-grid-lines"></div>
 			</div>
@@ -180,65 +263,25 @@ function _main ()
 
 					<div className="panel-bar">
 						<div className="menu">
-							<Link link="/" active={activePage === "home"}>Home</Link>
-							<Link link="/?p=education" active={activePage === "education"}>Education</Link>
-							<Link link="/?p=portfolio" active={activePage === "portfolio"}>Portfolio</Link>
-							{/* <Link link="/?p=achievements" active={activePage === "achievements"}>Achivements</Link> */}
-							<Link link="/?p=thoughts" active={activePage === "thoughts"}>Thoughts</Link>
-							<Link link="/?p=gallery" active={activePage === "gallery"}>Gallery</Link>
-							<Link link="/?p=contact" active={activePage === "contact"}>Contact</Link>
+							{MENU.map(route => (
+								<Link key={route.id} link={route.path} active={selection.route.group === route.group}>
+									{route.label}
+								</Link>
+							))}
 						</div>
 					</div>
 
-					<div className="main">
-					<div style={{display: activePage === "home" ? "block" : "none"}}>
-						<Home/>
-					</div>
-
-					<div style={{display: activePage === "education" ? "block" : "none"}}>
-						<Education/>
-					</div>
-
-					<div style={{display: activePage === "portfolio" ? "block" : "none"}}>
-						<Portfolio/>
-					</div>
-
-					{/* Suspense sits INSIDE each conditional (not around them):
-					    on the first render nothing lazy is mounted, so the initial
-					    tree is plain divs — required for clean hydration of the
-					    prerendered home page (snapshots can't encode Suspense). */}
-					{/* <div style={{display: activePage === "achievements" ? "block" : "none"}}>
-						{visited.has("achievements") && <Suspense fallback={null}><Achievements/></Suspense>}
-					</div> */}
-
-					<div style={{display: activePage === "gallery" ? "block" : "none"}}>
-						{visited.has("gallery") && <Suspense fallback={null}><Gallery/></Suspense>}
-					</div>
-
-					<div style={{display: activePage === "contact" ? "block" : "none"}}>
-						<Contact/>
-					</div>
-
-					<div style={{display: activePage === "thoughts" ? "block" : "none"}}>
-						{visited.has("thoughts") && <Suspense fallback={null}><Thoughts/></Suspense>}
-					</div>
-
-					{
-						activePage === "unlisted_brainfuck"
-							? <Suspense fallback={null}><UnlistedBrainfuck/></Suspense>
-							: null
-					}
-
-					{
-						activePage === "video_self_ad"
-							? <Suspense fallback={null}><VideoSelfAd/></Suspense>
-							: null
-					}
+					<div className="main" onClick={handleAnchor}>
+						{pages
+							.filter(page => !page.route.unlisted || page.route.id === selection.route.id)
+							.map(page => (
+								<PageView key={page.route.id} {...page} active={page.route.id === selection.route.id} />
+							))}
 					</div>
 				</div>
 			</div>
-		</>
+		</NavigationContext.Provider>
 	);
 }
 
-export default _main;
+export default Main;

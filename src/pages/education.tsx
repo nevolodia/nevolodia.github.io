@@ -26,7 +26,7 @@ function Education()
 				<br />
 				<br />
 
-				&gt; NeurIPS workshop MLxOR paper, “<Link link="/?p=thoughts&thought=001" a_style={true}>Recursive Latent Graph Model for Capacitated Vehicle Routing Problem</Link>”.
+				&gt; NeurIPS workshop MLxOR paper, “<Link link="/thoughts/001/" a_style={true}>Recursive Latent Graph Model for Capacitated Vehicle Routing Problem</Link>”.
 
 				<br />
 				<br />
@@ -41,7 +41,7 @@ function Education()
 				<br />
 				<br />
 
-				&gt; Lead organizer of the Latvian AI Olympiad (more in <Link link="/?p=portfolio" a_style={true}>Portfolio</Link>).
+				&gt; Lead organizer of the Latvian AI Olympiad (more in <Link link="/portfolio/" a_style={true}>Portfolio</Link>).
 			</p>
 
 			<Image link={me_in_university} link_big={me_in_university_big}/>

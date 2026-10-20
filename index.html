@@ -15,26 +15,9 @@
 		-->
 
 
-		<title>my website</title>
-		<meta name="description" content="My personal website with some interesting info and posts"/>
+		<!--page-head-->
 		<link rel="describedby" href="/llms.txt" type="text/plain" />
-		<script>
-			// Unlisted pages are intentionally absent from navigation and ask search
-			// engines not to index them before the React application loads.
-			(function () {
-				const page = new URLSearchParams(window.location.search).get('p');
-				if (page === 'unlisted_relagram') {
-					window.location.replace('/?p=thoughts&thought=001');
-					return;
-				}
-				if (page === 'unlisted_brainfuck') {
-					const robots = document.createElement('meta');
-					robots.name = 'robots';
-					robots.content = 'noindex, nofollow, noarchive';
-					document.head.appendChild(robots);
-				}
-			})();
-		</script>
+		<!--compatibility-->
 
 
 		<!--
@@ -80,7 +63,6 @@
 		</style>
 	</head>
 	<body>
-		<noscript>You need to enable JavaScript to see my website. I promise not to spy over you through JS:)</noscript>
 		<div id="root"></div>
 		<script type="module" src="/src/index.tsx"></script>
 	</body>

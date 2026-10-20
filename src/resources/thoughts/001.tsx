@@ -1,11 +1,10 @@
 import type { Post } from "./types";
-import { VideoPlayer, NeutralVideoSkin, Video } from "@videojs/react/video";
-import "@videojs/react/video/neutral-skin.css";
+import { POSTS_BY_ID } from "./catalog";
+import ThoughtVideo, { ThoughtLoop } from "../../components/ThoughtVideo";
 import RelagramAudio from "./RelagramAudio";
 
 const post: Post = {
-    number: "001",
-    title: "RELAGRAM",
+    ...POSTS_BY_ID["001"],
     content: (
         <>
             <RelagramAudio />
@@ -23,13 +22,7 @@ const post: Post = {
                 <a href="https://arxiv.org/abs/2610.15106">Read the paper on arXiv!</a>
             </p>
 
-            <VideoPlayer>
-                <NeutralVideoSkin className="thought-video">
-                    <Video src="/thoughts/001/main67.mp4" playsInline preload="metadata">
-                        <a href="/thoughts/001/main67.mp4">Download the video</a>
-                    </Video>
-                </NeutralVideoSkin>
-            </VideoPlayer>
+            <ThoughtVideo src="/thoughts/001/main67.mp4" />
 
         {/* TODO
         - we -> I
@@ -103,7 +96,7 @@ const post: Post = {
             <p>
                 For the problem to run latent recursion on, I chose the Capacitated Vehicle Routing Problem (CVRP) because it is well known, has practical applications, and is substantially harder than many other graph combinatorial optimization problems such as the Traveling Salesman Problem (TSP).
             </p>
-            <video className="thought-video" src="/thoughts/001/m_1.mp4" autoPlay muted loop playsInline preload="metadata" />
+            <ThoughtLoop className="thought-video" src="/thoughts/001/m_1.mp4" muted loop playsInline />
             <p>
                 If you are unfamiliar with CVRP, picture a graph whose vertices are customers and a depot storing the goods. Each edge represents a travel route between two locations, and its weight gives the travel cost of the trip. The graph is typically complete, meaning you can directly find the cost of the route between any two locations. Your task is to make deliveries of the goods from the depot to every customer using a fleet of vehicles. The word "capacitated" in the problem's name adds a constraint: each vehicle can carry only a limited load. A valid solution is a set of routes that covers all customers and respects every vehicle's capacity limits.
             </p>
@@ -138,7 +131,7 @@ const post: Post = {
                 We represent the Capacitated Vehicle Routing Problem as a directed graph and encode its edges as tokens. Encoding every edge would make the token count grow quadratically with the number of vertices. To keep the number of tokens manageable, we encode only edges from each vertex to its k nearest neighbors. In our experiments, we use k of 20.
             </p>
 
-            <video className="thought-video" src="/thoughts/001/m_3.mp4" autoPlay muted loop playsInline preload="metadata" />
+            <ThoughtLoop className="thought-video" src="/thoughts/001/m_3.mp4" muted loop playsInline />
 
             <p>
                 We then initialize two latent states: the answer state and the workspace. The answer state carries the developing solution. The workspace is a scratchpad for the model's intermediate reasoning.
@@ -174,7 +167,7 @@ const post: Post = {
             <p>
                 Largely, the reason was a limitation of how reinforcement learning works here. It is a powerful technique and a natural fit for routing: optimal reference solutions are rarely available, and suboptimal ones are expensive to find. Instead, we reward the model based on the quality of its own solutions - in our case, how short they are. Computing that reward adds no overhead to training.
             </p>
-            <video className="thought-video" src="/thoughts/001/m_2.mp4" autoPlay muted loop playsInline preload="metadata" />
+            <ThoughtLoop className="thought-video" src="/thoughts/001/m_2.mp4" muted loop playsInline />
             <p>
                 After some experimentation, I found reinforcement learning technique effective for our model: using stochastic decoding, we sample multiple solutions for each instance-solution pair. We then compare each one's reward with the average.
             </p>

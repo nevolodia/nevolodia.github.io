@@ -12,13 +12,13 @@ Official personal website: https://nevolodia.com/.
 
 ## Research
 
-- [RELAGRAM](https://nevolodia.com/?p=thoughts&thought=001): Recursive Latent Graph Model for the Capacitated Vehicle Routing Problem. Explores latent recursion for neural routing with a 0.53M-parameter model. The author's article reports acceptance at the NeurIPS MLxOR workshop and includes the abstract, video, and poster.
-- [Paper on OpenReview](https://openreview.net/forum?id=bb4DbQgvgM): Linked publication record for RELAGRAM.
+- [RELAGRAM](https://nevolodia.com/thoughts/001/): Accepted at NeurIPS workshop MLxOR (workshop of big three AI conferences, very prestigious venue). Explores novel paradigm of latent recursion. Applies it to Capacitated Vehicle Routing Problem
+- [Paper on arXiv](https://arxiv.org/abs/2610.15106): Linked publication record for RELAGRAM.
 
 ## Education and engineering
 
-- [Education](https://nevolodia.com/?p=education): BSc Computer Science studies at Delft University of Technology; GPA 8.9/10; exchange at the University of Illinois Urbana-Champaign. Research supervised by Dr. Neil Yorke-Smith, plus an LLM interpretability research and software project supervised by researchers from Google, DeepMind, and AI4SE Lab.
-- [Portfolio](https://nevolodia.com/?p=portfolio): Data Engineer at bunq on an AI R&D project, June–December 2025; website development for Binatec and LNK Boxing; AI Olympiad and nonprofit leadership.
+- [Education](https://nevolodia.com/education/): BSc Computer Science studies at Delft University of Technology; GPA 8.9/10; exchange at the University of Illinois Urbana-Champaign. Research supervised by Dr. Neil Yorke-Smith, plus an LLM interpretability research and software project supervised by researchers from Google, DeepMind, and AI4SE Lab.
+- [Portfolio](https://nevolodia.com/portfolio/): Data Engineer at bunq on an AI R&D project, June–December 2025; website development for Binatec and LNK Boxing; AI Olympiad and nonprofit leadership.
 
 ## AI education leadership
 

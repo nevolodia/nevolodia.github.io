@@ -21,7 +21,7 @@ function Home()
 				<br/>
 				<br/>
 
-				— Read about my publication at NeurIPS workshop MLxOR: <Link link="/?p=thoughts&thought=001" a_style={true}>RELAGRAM</Link>
+				— Read about my publication at NeurIPS workshop MLxOR: <Link link="/thoughts/001/" a_style={true}>RELAGRAM</Link>
 
 				<br/>
 				<br/>
