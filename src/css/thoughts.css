@@ -64,7 +64,7 @@
     border-radius: inherit;
     background: conic-gradient(from 45deg, #ff004c, #ff9a00, #ffe600, #00ff87, #00d9ff, #3855ff, #b600ff, #ff004c);
     filter: blur(16px);
-    opacity: 0.323;
+    opacity: 0.3627936;
     z-index: -2;
     pointer-events: none;
 }
@@ -79,6 +79,63 @@
     background: #000;
     z-index: -1;
     pointer-events: none;
+}
+
+.thought-audio-heading
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.thought-ambient-controls
+{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.thought-ambient-toggle
+{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.thought-ambient-toggle span
+{
+    opacity: 0.6;
+}
+
+.thought-ambient-toggle.is-active
+{
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.thought-ambient-toggle.is-active span
+{
+    opacity: 1;
+}
+
+.thought-ambient-error
+{
+    margin-top: 8px;
+    font-size: 0.8rem;
 }
 
 @media (min-width: 778px)

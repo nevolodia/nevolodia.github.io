@@ -1,22 +1,14 @@
 import type { Post } from "./types";
 import { VideoPlayer, NeutralVideoSkin, Video } from "@videojs/react/video";
 import "@videojs/react/video/neutral-skin.css";
-import { AudioPlayer, NeutralAudioSkin, Audio } from "@videojs/react/audio";
-import "@videojs/react/audio/neutral-skin.css";
+import RelagramAudio from "./RelagramAudio";
 
 const post: Post = {
     number: "001",
     title: "RELAGRAM",
     content: (
         <>
-            <div className="thought-audio" style={{padding: "12px", border: "1px solid rgba(255, 255, 255, 0.5)", borderRadius: "12px"}}>
-            <AudioPlayer>
-                <NeutralAudioSkin>
-                    <div style={{fontSize: "1.2rem", fontWeight: 500, marginBottom: "8px"}}>Listen to RELAGRAM</div>
-                    <Audio src="/thoughts/001/media_audio_67.mp3" preload="metadata" />
-                </NeutralAudioSkin>
-            </AudioPlayer>
-            </div>
+            <RelagramAudio />
 
             <div style={{height: "0.5lh"}} />
 
