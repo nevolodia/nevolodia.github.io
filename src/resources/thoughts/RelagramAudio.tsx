@@ -1,7 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { AudioPlayer, NeutralAudioSkin, Audio } from "@videojs/react/audio";
+import { createPlayer } from "@videojs/react";
+import { audioFeatures, NeutralAudioSkin, Audio } from "@videojs/react/audio";
+import { playbackRateFeature } from "@videojs/core/dom";
 import "@videojs/react/audio/neutral-skin.css";
 import { syncAmbientAudio } from "./ambient-audio";
+
+const { Player: AudioPlayer } = createPlayer({
+    features: audioFeatures.map(feature => feature === playbackRateFeature ? {
+        ...playbackRateFeature,
+        state: (context: Parameters<typeof playbackRateFeature.state>[0]) => ({
+            ...playbackRateFeature.state(context),
+            playbackRates: [1, 1.42, 1.67],
+        }),
+    } : feature),
+});
 
 export default function RelagramAudio() {
     const narration = useRef<HTMLAudioElement>(null);
