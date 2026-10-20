@@ -13,7 +13,7 @@ const post: Post = {
             <AudioPlayer>
                 <NeutralAudioSkin>
                     <div style={{fontSize: "1.2rem", fontWeight: 500, marginBottom: "8px"}}>Listen to RELAGRAM</div>
-                    <Audio src="/thoughts/001/relagram-audio.mp3" preload="metadata" />
+                    <Audio src="/thoughts/001/media_audio_67.mp3" preload="metadata" />
                 </NeutralAudioSkin>
             </AudioPlayer>
             </div>
@@ -180,20 +180,20 @@ const post: Post = {
                 The very first experiments were promising: the model was able to learn to route. Yet it was plateauing very fast, and training it for longer brought little improvement.
             </p>
             <p>
-                Largely, the reason was a limitation of how reinforcement learning works here. It is a powerful technique and a natural fit for routing: optimal reference solutions are rarely available, and suboptimal ones are expensive to find. Instead, we reward the model based on the quality of its own solutions - in our case, how short they are. Computing that reward adds almost no overhead to training.
+                Largely, the reason was a limitation of how reinforcement learning works here. It is a powerful technique and a natural fit for routing: optimal reference solutions are rarely available, and suboptimal ones are expensive to find. Instead, we reward the model based on the quality of its own solutions - in our case, how short they are. Computing that reward adds no overhead to training.
             </p>
             <video className="thought-video" src="/thoughts/001/m_2.mp4" autoPlay muted loop playsInline preload="metadata" />
             <p>
-                After some experimentation, I found reinforcement learning technique effective for our model: using stochastic decoding, we sample multiple solutions for each instance-solution pair. We then compare each one's reward with the average. This is conveniently used to find a training signal for each of the individual edges.
+                After some experimentation, I found reinforcement learning technique effective for our model: using stochastic decoding, we sample multiple solutions for each instance-solution pair. We then compare each one's reward with the average.
             </p>
             <p> 
-                Unfortunately, the signal is still very sparse, as the reward comes from a single scalar evaluating how good the overall solution is.
+                Unfortunately, the signal still was very sparse.
             </p>
             <p>
-                To counter that, I ran many experiments attempting to strengthen the RL signal: such as POMO-style rollouts, entropy regularization, or different RL baselines. Most of these attempts did not help or made the performance worse.
+                To counter that, I ran many experiments attempting to strengthen the RL signal: such as POMO-style rollouts, entropy regularization, or different RL baselines. Most of these attempts did not help or even made the performance worse.
             </p>
             <p>
-                Yet one of the experiments, adding the self-imitation loss to the RL signal, turned out to be very useful. It is a simple yet clever technique: out of the solutions for the same instance, we use the best as a reference. We apply cross-entropy loss to the other solutions, using the best one as the target and simulating supervised learning. This gives us training labels without having to find optimal solutions with expensive solvers and provides a denser learning signal.
+                Yet one of the experiments, adding the self-imitation loss to the RL signal, turned out to be very useful. Self imitation is a simple yet clever technique: out of solutions generated for an instance, we take the best and use it as our reference. We then train rest of solutions to lean toward reference with cross-entropy loss, simulating supervised learning. This gives us free training labels, and provides a denser learning signal.
             </p>
             <p>
                 A number of other techniques and engineering choices, such as noise-augmented decoding, also helped and became part of the model.
