@@ -7,6 +7,7 @@
 ## todo
 
 1. Load images last (when everything else is loaded / document is rendered)
+2. Generate routes, navigation, and sitemap from page/article files. Keep titles, descriptions, menu order, and unlisted flags in each page; keep only legacy redirects in a central config. Preserve lazy loading and instant navigation.
 
 ## super minor things
 
