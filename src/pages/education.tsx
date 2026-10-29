@@ -44,6 +44,19 @@ function Education()
 
 				<Divide67 />
 
+				<b>AI Olympiad.</b>
+				<BB />
+
+				— Founder of first-in-history <Link link="https://omi.lv/" a_style={true}>Latvian AI Olympiad</Link>.
+				<br />
+
+				— Led Latvia's participation in International Olympiad in AI, where we won Bronze and Silver!
+				<BB />
+
+				— Created Lemon AI, a non-profit developing AI education for students worldwide.
+
+				<Divide67 />
+
 				<b>Academic Service.</b>
 				<BB />
 
@@ -66,19 +79,6 @@ function Education()
 				<br />
 
 				— AAAI Workshop MultiRobust, 2027
-
-				<Divide67 />
-
-				<b>AI Olympiad.</b>
-				<BB />
-
-				— Founder of first-in-history <Link link="https://omi.lv/" a_style={true}>Latvian AI Olympiad</Link>.
-				<br />
-
-				— Led Latvia's participation in International Olympiad in AI, where we won Bronze and Silver!
-				<BB />
-
-				— Created Lemon AI, a non-profit developing AI education for students worldwide.
 
 				<br />
 			</p>
