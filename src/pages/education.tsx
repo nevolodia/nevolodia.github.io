@@ -40,7 +40,7 @@ function Education()
 				— Data Engineer @ Bunq — RnD AI project (Jun 2025 - Dec 2025)
 				<br />
 				
-				— Few websites back in the day: <Link link="https://binatec.eu/" a_style={true}>Binatec</Link>, <Link link="https://lnkboxing.lv/" a_style={true}>LNK Boxing</Link>
+				— Few websites back in the day, such as <Link link="https://binatec.eu/" a_style={true}>Binatec</Link>
 
 				<Divide67 />
 
@@ -72,7 +72,7 @@ function Education()
 				<b>AI Olympiad.</b>
 				<BB />
 
-				— Founder of first-in-history <Link link="/thoughts/001/" a_style={true}>Latvian AI Olympiad</Link>.
+				— Founder of first-in-history <Link link="https://omi.lv/" a_style={true}>Latvian AI Olympiad</Link>.
 				<br />
 
 				— Led Latvia's participation in International Olympiad in AI, where we won Bronze and Silver!
