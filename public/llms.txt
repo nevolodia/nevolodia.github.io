@@ -18,7 +18,6 @@ Official personal website: https://nevolodia.com/.
 ## Education and engineering
 
 - [Education](https://nevolodia.com/education/): BSc Computer Science studies at Delft University of Technology; GPA 8.9/10; exchange at the University of Illinois Urbana-Champaign. Research supervised by Dr. Neil Yorke-Smith, plus an LLM interpretability research and software project supervised by researchers from Google, DeepMind, and AI4SE Lab.
-- [Portfolio](https://nevolodia.com/portfolio/): Data Engineer at bunq on an AI R&D project, June–December 2025; website development for Binatec and LNK Boxing; AI Olympiad and nonprofit leadership.
 
 ## AI education leadership
 

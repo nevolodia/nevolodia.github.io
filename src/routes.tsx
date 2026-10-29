@@ -16,7 +16,6 @@ async function loadThought(post: Promise<{ default: Post }>): Promise<PageModule
 const loaders: Record<string, () => Promise<PageModule>> = {
 	home: () => import("./pages/home"),
 	education: () => import("./pages/education"),
-	portfolio: () => import("./pages/portfolio"),
 	thoughts: () => import("./pages/thoughts"),
 	gallery: () => import("./pages/gallery"),
 	contact: () => import("./pages/contact"),

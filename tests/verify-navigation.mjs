@@ -132,8 +132,8 @@ try {
     await mount("/");
     assert.equal(window.document.querySelectorAll("[data-page]").length, 1);
     await act(async () => { window.dispatchEvent(new window.Event("load")); });
-    for (let attempt = 0; attempt < 30 && window.document.querySelectorAll("[data-page]").length < 8; attempt++) await settle();
-    assert.equal(window.document.querySelectorAll("[data-page]").length, 8, "all public pages must render automatically after load");
+    for (let attempt = 0; attempt < 30 && window.document.querySelectorAll("[data-page]").length < 7; attempt++) await settle();
+    assert.equal(window.document.querySelectorAll("[data-page]").length, 7, "all public pages must render automatically after load");
     assert.equal(window.document.querySelectorAll("iframe[src^='https:']").length, 0, "unlisted embeds must not warm");
     const hiddenArticle = window.document.querySelector('[data-page="thought-001"]');
     assert.equal(hiddenArticle.style.display, "none");
@@ -159,7 +159,7 @@ try {
     assert.equal(window.location.pathname, "/education/");
     assert.equal(cachedEducation.style.display, "block");
     assert.equal(window.document.querySelector('[data-page="education"]'), cachedEducation);
-    assert.equal(window.document.title, "Education");
+    assert.equal(window.document.title, "Academics");
     assert.deepEqual(scroll, [0, 0]);
     await act(async () => { window.history.back(); });
     await settle();
@@ -170,7 +170,7 @@ try {
     await settle();
     assert.equal(window.location.pathname, "/education/");
     assert.equal(window.document.querySelector('[data-page="education"]'), cachedEducation);
-    assert.equal(await click('.menu a[href="/portfolio/"]', { ctrlKey: true }), false, "modified clicks must stay native");
+    assert.equal(await click('.menu a[href="/gallery/"]', { ctrlKey: true }), false, "modified clicks must stay native");
     assert.equal(window.location.pathname, "/education/");
     await click('a[href="/thoughts/001/"]');
     assert.equal(hiddenArticle.style.display, "block");
