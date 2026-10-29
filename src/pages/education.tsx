@@ -13,7 +13,7 @@ function Education()
 	return (
 		<div>
 			<p>
-				Education.
+				<b>Education.</b>
 				<br />
 				<br />
 
@@ -23,7 +23,7 @@ function Education()
 
 				<Divide67 />
 
-				Research.
+				<b>Research.</b>
 				<br />
 				<br />
 
@@ -36,14 +36,14 @@ function Education()
 
 				<Divide67 />
 
-				Work.
+				<b>Work.</b>
 
 				— Data Engineer @ Bunq — RnD AI project (Jun 2025 - Dec 2025)
 				— Few websites back in the day: Binatec, LNK Boxing
 
 				<Divide67 />
 
-				Academic Service.
+				<b>Academic Service.</b>
 				<br />
 				<br />
 
@@ -71,7 +71,7 @@ function Education()
 
 				<Divide67 />
 
-				AI Olympiad.
+				<b>AI Olympiad.</b>
 				<br />
 				<br />
 

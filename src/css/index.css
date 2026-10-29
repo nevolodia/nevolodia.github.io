@@ -31,6 +31,10 @@ p {
 	letter-spacing: 0.01em;
 }
 
+b, strong {
+	font-weight: 800;
+}
+
 h2, a {
 	font-family: 'Space Mono', 'Space Mono Fallback', monospace, 'Courier New';
 }
