@@ -27,8 +27,8 @@ export const MENU: Route[] = [
 		id: "education",
 		path: "/education/",
 		group: "education",
-		label: "Academics",
-		title: "Academics",
+		label: "Portfolio",
+		title: "Portfolio",
 		description: "Education, research, and academic service by Vladimir Kirill Bickov.",
 	},
 	{

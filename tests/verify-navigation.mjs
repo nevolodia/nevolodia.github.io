@@ -159,7 +159,7 @@ try {
     assert.equal(window.location.pathname, "/education/");
     assert.equal(cachedEducation.style.display, "block");
     assert.equal(window.document.querySelector('[data-page="education"]'), cachedEducation);
-    assert.equal(window.document.title, "Academics");
+    assert.equal(window.document.title, "Portfolio");
     assert.deepEqual(scroll, [0, 0]);
     await act(async () => { window.history.back(); });
     await settle();

@@ -4,15 +4,7 @@ function Contact()
 		<div>
 			<p>
 
-				My github: <br />
-				<a href={"https://github.com/nevolodia"}>
-					https://github.com/nevolodia
-				</a>
-
-				<br />
-				<br />
-
-				Linkedin: <br />
+				My Linkedin: <br />
 				<a href={"https://www.linkedin.com/in/nevolodia/"}>
 					https://www.linkedin.com/in/nevolodia/
 				</a>

@@ -40,7 +40,7 @@ function Education()
 				— Data Engineer @ Bunq — RnD AI project (Jun 2025 - Dec 2025)
 				<br />
 				
-				— Few websites back in the day: Binatec, LNK Boxing
+				— Few websites back in the day: <Link link="https://binatec.eu/" a_style={true}>Binatec</Link>, <Link link="https://lnkboxing.lv/" a_style={true}>LNK Boxing</Link>
 
 				<Divide67 />
 

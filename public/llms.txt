@@ -17,7 +17,7 @@ Official personal website: https://nevolodia.com/.
 
 ## Education and engineering
 
-- [Education](https://nevolodia.com/education/): BSc Computer Science studies at Delft University of Technology; GPA 8.9/10; exchange at the University of Illinois Urbana-Champaign. Research supervised by Dr. Neil Yorke-Smith, plus an LLM interpretability research and software project supervised by researchers from Google, DeepMind, and AI4SE Lab.
+- [Portfolio](https://nevolodia.com/education/): BSc Computer Science studies at Delft University of Technology; GPA 8.9/10; exchange at the University of Illinois Urbana-Champaign. Research supervised by Dr. Neil Yorke-Smith, plus an LLM interpretability research and software project supervised by researchers from Google, DeepMind, and AI4SE Lab.
 
 ## AI education leadership
 
